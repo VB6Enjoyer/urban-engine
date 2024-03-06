@@ -1,19 +1,44 @@
-import { Application, Sprite } from 'pixi.js'
+import { Application, Assets, AssetsManifest, Sprite } from 'pixi.js';
 
 const app = new Application<HTMLCanvasElement>({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x6495ed,
-	width: 640,
-	height: 480
+	width: 600,
+	height: 600
 });
 
-const clampy: Sprite = Sprite.from("clampy.png");
+export const manifest: AssetsManifest = {
+	bundles: [
+		{
+			name: "bundleName",
+			assets:
+			{
+				"Clampy the clamp": "./clampy.png",
+				"Epitaph": "./epitaph.jpg",
+			}
+		},
+	]
+}
 
-clampy.anchor.set(0.5);
+async function init() {
+	// Assets.init must only happen once! 
+	// Pack all your bundles into one manifest!
+	await Assets.init({ manifest: manifest });
 
-clampy.x = app.screen.width / 3;
-clampy.y = app.screen.height / 3;
+	// Load the bundles you need
+	await Assets.loadBundle("bundleName");
+	const clampy = Sprite.from("Epitaph");
+	console.log(clampy.width, clampy.height);
 
-app.stage.addChild(clampy);
+	clampy.anchor.set(0);
+
+	clampy.x = -400;
+	clampy.y = -460;
+
+	app.stage.addChild(clampy);
+}
+
+init();
+
