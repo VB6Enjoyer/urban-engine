@@ -1,31 +1,16 @@
-import { Application, Assets, AssetsManifest, Container, Point, Sprite } from 'pixi.js';
+import { Application, Assets, } from 'pixi.js';
+import { manifest } from "./assets";
+import { Scene } from './Scene';
+import { Background } from './Background';
 
 const app = new Application<HTMLCanvasElement>({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
 	resolution: window.devicePixelRatio || 1,
 	autoDensity: true,
 	backgroundColor: 0x000000,
-	width: 1500,
-	height: 1500
+	width: 1536,
+	height: 1020
 });
-
-export const manifest: AssetsManifest = {
-	bundles: [
-		{
-			name: "bundleName",
-			assets:
-			{
-				"Clampy the clamp": "./clampy.png",
-				"Epitaph": "./epitaph.jpg",
-				"DUFN": "./dufn.png",
-				"Apple": "./apple.png",
-				"Bandcamp": "./bandcamp.png",
-				"Deezer": "./deezer.png",
-				"Spotify": "./spotify.png",
-			}
-		},
-	]
-}
 
 async function init() {
 	// Assets.init must only happen once! 
@@ -33,60 +18,23 @@ async function init() {
 	await Assets.init({ manifest: manifest });
 
 	// Load the bundles you need
-	await Assets.loadBundle("bundleName");
-	const epitaph = Sprite.from("Epitaph");
-	const dufn = Sprite.from("DUFN");
-	const apple = Sprite.from("Apple");
-	const bandcamp = Sprite.from("Bandcamp");
-	const deezer = Sprite.from("Deezer");
-	const spotify = Sprite.from("Spotify");
-	//console.log(clampy.width, clampy.height);
+	await Assets.loadBundle("backgrounds");
+	await Assets.loadBundle("characters");
+	await Assets.loadBundle("objects");
+	await Assets.loadBundle("ui");
+	await Assets.loadBundle("fx");
 
-	// Sets the origin point of the sprite, since it's set to 0 it's the top left.
-	epitaph.anchor.set(0);
+	const myScene = new Scene();
+	const background = new Background();
 
-	dufn.position.set(100, 1325);
-	dufn.scale.set(1.33);
+	myScene.scale.set(0.85);
+	myScene.position.set(500, 450);
 
-	apple.scale.set(0.5);
-	bandcamp.scale.set(0.5);
-	deezer.scale.set(0.5);
-	spotify.scale.set(0.5);
-
-	apple.x = 0;
-	bandcamp.x = 166;
-	deezer.x = bandcamp.x * 2;
-	spotify.x = bandcamp.x * 3;
-
-	const epitaphWithDufn = new Container();
-	const streamingServices = new Container();
-
-	streamingServices.pivot.set(-(screen.width) / 2, 0);
-
-	epitaphWithDufn.addChild(epitaph);
-	epitaphWithDufn.addChild(dufn);
-	streamingServices.addChild(apple, bandcamp, deezer, spotify);
-
-	console.log(dufn.toGlobal(new Point()));
-	console.log(dufn.parent.toGlobal(dufn.position));
-
-	epitaphWithDufn.scale.set(1);
-	//epitaphWithDufn.position.set(0, 0);
-
-	streamingServices.scale.set(0.75);
-	//streamingServices.position.set(0, 0);
-
-	// Relocates the DUFN logo regardless of the position of parent elements.
-	//const aux = dufn.parent.toLocal(new Point(700, 700));
-	//dufn.position.x = aux.x;
-	//dufn.position.y = aux.y;
-
-	app.stage.addChild(epitaphWithDufn);
-	app.stage.addChild(streamingServices);
+	app.stage.addChild(background);
+	app.stage.addChild(myScene);
 }
 
 window.addEventListener("resize", () => {
-	//console.log("Resized.");
 	const scaleX = window.innerWidth / app.screen.width
 	const scaleY = window.innerHeight / app.screen.height;
 	const scale = Math.min(scaleX, scaleY);
