@@ -1,5 +1,6 @@
-import { AnimatedSprite, Assets, Container, Texture, Sprite, Text, NineSlicePlane } from "pixi.js";
+import { Assets, Container, Texture, Sprite, Text, NineSlicePlane } from "pixi.js";
 import { BuckWithAmp } from "./BuckWithAmp";
+import { RoundButton } from "./RoundButton";
 
 export class Scene extends Container {
     constructor() {
@@ -17,76 +18,7 @@ export class Scene extends Container {
         ui_player.position.set(970, 260);
         this.addChild(ui_player);
 
-        // Animated sprite.
-        const buckAnimated = new AnimatedSprite(
-            [
-                Texture.from("Buck-hd-eo"),
-                Texture.from("Buck-hu-eo"),
-                /*                 
-                Texture.from("Buck-hd-ec-s"),
-                Texture.from("Buck-hd-eh"),
-                Texture.from("Buck-hd-eh-s"),
-                Texture.from("Buck-hd-eo"),
-                Texture.from("Buck-hd-ey-s"),
-                Texture.from("Buck-hu-ec"),
-                Texture.from("Buck-hu-ec-s"),
-                Texture.from("Buck-hu-eh"),
-                Texture.from("Buck-hu-eh-s"), 
-                Texture.from("Buck-hu-eo-s")
-                */
-            ],
-            true
-        );
-
-        buckAnimated.play();
-        buckAnimated.animationSpeed = 0.1;
-
         Assets.loadBundle("fx");
-        const notesAnimated = new AnimatedSprite(
-            [
-                Texture.from("Notes_1"),
-                Texture.from("Notes_2")
-            ],
-            true
-        );
-
-        notesAnimated.play();
-        notesAnimated.animationSpeed = 0.025;
-        notesAnimated.position.set(380, 50);
-        notesAnimated.onFrameChange = (frame: number) => {
-            if (frame == 0) {
-                notesAnimated.position.set(380, 50);
-            }
-
-            if (frame == 1) {
-                notesAnimated.position.set(480, 40);
-            }
-        }
-        notesAnimated.scale.set(0.33);
-
-        this.addChild(buckAnimated);
-        this.addChild(notesAnimated);
-
-        /*
-        // Graphics
-        const myGraph = new Graphics();
-        myGraph.lineStyle({ color: 0xFFFFFF, width: 10, alpha: 1 });
-        myGraph.moveTo(0, 0);
-        myGraph.lineTo(100, 300);
-        myGraph.lineTo(100, 200);
-        myGraph.lineTo(0, 0);
-        
-        myGraph.clear();
-        
-        myGraph.lineStyle({ color: 0xFFFFFF, width: 10, alpha: 1 });
-        myGraph.beginFill(0x000000, 1);
-        myGraph.drawCircle(0, 0, 100);
-        myGraph.endFill();
-        myGraph.drawCircle(50, 50, 100);
-        
-        myGraph.position.set(120, 1300);
-        this.addChild(myGraph);*/
-
 
         // Text
         const nowPlaying = new Text("Now Playing:", { fontSize: 23, fill: 0x000000, fontFamily: "tahoma" });
@@ -103,10 +35,11 @@ export class Scene extends Container {
         this.addChild(artist);
 
         // Nine-Slice Plane
-        const panel = new NineSlicePlane(Texture.from("Radio"), 50, 50, 50, 50);
+        let panel = new NineSlicePlane(Texture.from("Radio"), 50, 50, 50, 50);
         panel.width = 480;
         panel.height = 380;
         panel.position.set(-580, 285);
+
         this.addChild(panel);
 
         const onOff = new Text("On/Off", { fontSize: 20, fill: 0x000000, fontFamily: "verdana" })
@@ -116,5 +49,28 @@ export class Scene extends Container {
         const rec = new Text("Rec.", { fontSize: 23, fill: 0x000000, fontFamily: "verdana" })
         rec.position.set(-350, 590);
         this.addChild(rec);
+
+        // Graphics
+        const recorderButton = new RoundButton();
+        recorderButton.pivot.set(panel.x);
+        recorderButton.position.set(-740, 26);
+
+        recorderButton.eventMode = "static";
+        recorderButton.on("pointerdown", recorderOnOff);
+        let recorderOn = true;
+
+        // Would it be better to load both textures and make the other invisible on click?
+        function recorderOnOff() {
+            if (recorderOn) {
+                panel.texture = Texture.from("Radio_off");
+                recorderOn = false;
+            } else {
+                panel.texture = Texture.from("Radio");
+                recorderOn = true;
+            }
+        }
+
+        this.addChild(recorderButton);
     }
+
 }

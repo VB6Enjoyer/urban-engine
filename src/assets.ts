@@ -7,6 +7,7 @@ export const manifest: AssetsManifest = {
             assets:
             {
                 "Room": "./background/room.jpeg",
+                "Room-Night": "./background/room-night.jpg"
             }
         },
 
@@ -34,7 +35,13 @@ export const manifest: AssetsManifest = {
             assets:
             {
                 "Amplifier": "./objects/amplifier.png",
-                "Guitar": "./objects/guitar.png"
+                "Guitar": "./objects/guitar.png",
+                "Clock_Morning": "./objects/clock-morning.png",
+                "Clock_Transition1": "./objects/clock-transition1.png",
+                "Clock_Transition2": "./objects/clock-transition2.png",
+                "Clock_Night": "./objects/clock-night.png",
+                "Switch-On": "./objects/switch-on.png",
+                "Switch-Off": "./objects/switch-off.png"
             }
         },
 
@@ -43,6 +50,7 @@ export const manifest: AssetsManifest = {
             assets:
             {
                 Radio: "./ui/radio.png",
+                Radio_off: "./ui/radio-off.png",
                 UI_Player: "./ui/ui-player.png"
             }
         },
