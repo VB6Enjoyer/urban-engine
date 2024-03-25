@@ -56,6 +56,15 @@ export const manifest: AssetsManifest = {
         },
 
         {
+            name: "keyboard_inputs",
+            assets:
+            {
+                W_Key: "./ui/keyboard_mouse/white/T_W_Key_White.png",
+                E_Key: "./ui/keyboard_mouse/white/T_E_Key_White.png"
+            }
+        },
+
+        {
             name: "fx",
             assets:
             {

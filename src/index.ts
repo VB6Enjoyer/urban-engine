@@ -1,8 +1,9 @@
-import { Application, Assets, Graphics, } from 'pixi.js';
+import { Application, Assets, Graphics, Ticker } from 'pixi.js';
 import { manifest } from "./assets";
 import { Scene } from './Scene';
 import { Background } from './Background';
 import { Keyboard } from './Keyboard';
+import { TickerScene } from './TickerScene';
 
 const app = new Application<HTMLCanvasElement>({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -14,6 +15,7 @@ const app = new Application<HTMLCanvasElement>({
 });
 
 let background: Background;
+let scene: Scene;
 
 async function init() {
 	// Assets.init must only happen once! 
@@ -27,15 +29,16 @@ async function init() {
 	await Assets.loadBundle("objects");
 	await Assets.loadBundle("ui");
 	await Assets.loadBundle("fx");
+	await Assets.loadBundle("keyboard_inputs");
 
-	background = new Background(turnLightsOnOff);;
-	const myScene = new Scene();
+	background = new Background(turnLightsOnOff);
+	scene = new Scene(play);
 
-	myScene.scale.set(0.85);
-	myScene.position.set(500, 450);
+	scene.scale.set(0.85);
+	scene.position.set(500, 450);
 
 	app.stage.addChild(background);
-	app.stage.addChild(myScene);
+	app.stage.addChild(scene);
 }
 
 Keyboard.initialize();
@@ -75,6 +78,25 @@ function turnLightsOnOff(): void {
 		const darkness = app.stage.children.find(child => child instanceof Graphics)
 		if (darkness) {
 			app.stage.removeChild(darkness);
+		}
+	}
+}
+
+// TODO Add code to remove graph. For some reason it seems to be all bugged out.
+// TODO Position for key press is awful, need to configure it properly.
+function play(): void {
+	if (scene.recorderOn) {
+		const tickerScene = new TickerScene();
+
+		Ticker.shared.add(function (deltaFrame) {
+			tickerScene.update(Ticker.shared.deltaMS, deltaFrame)
+		})
+
+		app.stage.addChild(tickerScene);
+	} else {
+		const tickerScene = app.stage.children.find(child => child instanceof TickerScene)
+		if (tickerScene) {
+			app.stage.removeChild(tickerScene);
 		}
 	}
 }

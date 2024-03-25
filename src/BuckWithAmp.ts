@@ -3,6 +3,11 @@ import { manifest } from "./assets";
 import { sound } from "@pixi/sound";
 
 export class BuckWithAmp extends Container {
+
+    private canClick = true;
+    private buckAnimated: AnimatedSprite;
+    private notesAnimated: AnimatedSprite;
+
     constructor() {
         super();
 
@@ -17,7 +22,7 @@ export class BuckWithAmp extends Container {
         buck.anchor.set(0);
 
         // Animated sprite.
-        const buckAnimated = new AnimatedSprite(
+        this.buckAnimated = new AnimatedSprite(
             [
                 Texture.from("Buck-hd-eo"),
                 Texture.from("Buck-hu-eo"),
@@ -36,26 +41,26 @@ export class BuckWithAmp extends Container {
             ],
             true
         );
-        buckAnimated.animationSpeed = 0.1;
+        this.buckAnimated.animationSpeed = 0.1;
 
-        const notesAnimated = new AnimatedSprite(
+        this.notesAnimated = new AnimatedSprite(
             [
                 Texture.from("Notes_1"),
                 Texture.from("Notes_2")
             ],
             true
         );
-        notesAnimated.animationSpeed = 0.025;
-        notesAnimated.position.set(380, 50);
-        notesAnimated.scale.set(0.33);
-        notesAnimated.visible = false;
-        notesAnimated.onFrameChange = (frame: number) => {
+        this.notesAnimated.animationSpeed = 0.025;
+        this.notesAnimated.position.set(380, 50);
+        this.notesAnimated.scale.set(0.33);
+        this.notesAnimated.visible = false;
+        this.notesAnimated.onFrameChange = (frame: number) => {
             if (frame == 0) {
-                notesAnimated.position.set(380, 50);
+                this.notesAnimated.position.set(380, 50);
             }
 
             if (frame == 1) {
-                notesAnimated.position.set(480, 40);
+                this.notesAnimated.position.set(480, 40);
             }
         }
 
@@ -64,68 +69,65 @@ export class BuckWithAmp extends Container {
         // Adds an onClick event to play a random sound when Buck is clicked.
         buck.eventMode = "static";
         buck.cursor = "pointer";
-        buck.on("pointerdown", playGuitar)
-
-        let canClick = true;
-
-        // Find a way to make it so the transparent space can't get clicked.
-
-        function playGuitar(): void {
-            let rndNum = (Math.floor(Math.random() * 5) + 1);
-
-            if (canClick) {
-                if (rndNum < 5) {
-                    sound.add("sound", "./audio/riff" + rndNum + ".mp3");
-                } else {
-                    sound.add("sound", "./audio/solo.mp3");
-                }
-
-                sound.play("sound");
-                buckAnimated.play();
-                notesAnimated.visible = true;
-                notesAnimated.play();
-
-                canClick = false;
-                console.log(canClick);
-
-                let cooldownTime = 0;
-
-                if (rndNum == 1) {
-                    cooldownTime = 18000;
-                }
-
-                if (rndNum == 2) {
-                    cooldownTime = 16000;
-                }
-
-                if (rndNum == 3) {
-                    cooldownTime = 22000;
-                }
-
-                if (rndNum == 4) {
-                    cooldownTime = 12000;
-                }
-
-                if (rndNum == 5) {
-                    cooldownTime = 13000;
-                }
-
-                // Sets a cooldown before being able to play another sound.
-                setTimeout(() => {
-                    canClick = true;
-                    buckAnimated.stop();
-                    notesAnimated.stop();
-                    notesAnimated.visible = false;
-                }, cooldownTime);
-            }
-        }
+        buck.on("pointerdown", this.playGuitar)
 
         amp.position.set(350, 300);
         amp.scale.set(2.3);
 
         this.addChild(buck);
         this.addChild(amp);
-        this.addChild(buckAnimated);
-        this.addChild(notesAnimated);
+        this.addChild(this.buckAnimated);
+        this.addChild(this.notesAnimated);
+    }
+
+    // Find a way to make it so the transparent space can't get clicked.
+
+    private playGuitar(): void {
+        let rndNum = (Math.floor(Math.random() * 5) + 1);
+
+        if (this.canClick) {
+            if (rndNum < 5) {
+                sound.add("sound", "./audio/riff" + rndNum + ".mp3");
+            } else {
+                sound.add("sound", "./audio/solo.mp3");
+            }
+
+            sound.play("sound");
+            this.buckAnimated.play();
+            this.notesAnimated.visible = true;
+            this.notesAnimated.play();
+
+            this.canClick = false;
+
+            let cooldownTime = 0;
+
+            if (rndNum == 1) {
+                cooldownTime = 18000;
+            }
+
+            if (rndNum == 2) {
+                cooldownTime = 16000;
+            }
+
+            if (rndNum == 3) {
+                cooldownTime = 22000;
+            }
+
+            if (rndNum == 4) {
+                cooldownTime = 12000;
+            }
+
+            if (rndNum == 5) {
+                cooldownTime = 13000;
+            }
+
+            // Sets a cooldown before being able to play another sound.
+            setTimeout(() => {
+                this.canClick = true;
+                this.buckAnimated.stop();
+                this.notesAnimated.stop();
+                this.notesAnimated.visible = false;
+            }, cooldownTime);
+        }
     }
 }

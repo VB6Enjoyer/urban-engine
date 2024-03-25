@@ -7,7 +7,7 @@ export class RoundButton extends Container {
 
         let buttonGraph = new Graphics();
         buttonGraph.lineStyle({ color: 0xFFFFFF, width: 3, alpha: 0 });
-        buttonGraph.beginFill(0x000000, 0.01);
+        buttonGraph.beginFill(0x000000, Number.EPSILON);
         buttonGraph.drawCircle(0, 0, 25);
         buttonGraph.endFill();
 
