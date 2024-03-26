@@ -6,16 +6,20 @@ export class Scene extends Container {
 
     public recorderOn = false;
     private panel: NineSlicePlane;
-    private callback: Function;
+    private buckWithAmp: BuckWithAmp;
 
-    constructor(callback: () => void) {
+    private recorderContainer: Container;
+    private uiPlayerContainer: Container;
+
+    constructor() {
         super();
 
-        this.callback = callback;
-
         // Class extending from Container.
-        const buckWithAmp = new BuckWithAmp();
-        this.addChild(buckWithAmp);
+        this.buckWithAmp = new BuckWithAmp();
+        this.addChild(this.buckWithAmp);
+
+        this.recorderContainer = new Container();
+        this.uiPlayerContainer = new Container();
 
         Assets.loadBundle("ui");
 
@@ -23,7 +27,7 @@ export class Scene extends Container {
 
         ui_player.scale.set(1.5)
         ui_player.position.set(970, 260);
-        this.addChild(ui_player);
+        this.uiPlayerContainer.addChild(ui_player);
 
         Assets.loadBundle("fx");
 
@@ -31,15 +35,15 @@ export class Scene extends Container {
         const nowPlaying = new Text("Now Playing:", { fontSize: 23, fill: 0x000000, fontFamily: "tahoma" });
         nowPlaying.position.set(1020, 315);
         nowPlaying.scale.set(1.1); // This turns text into a texture, so it becomes blurry when upscaled.   
-        this.addChild(nowPlaying);
+        this.uiPlayerContainer.addChild(nowPlaying);
 
         const track = new Text("Hangar 18", { fontSize: 30, fill: 0x000000, fontFamily: "times-new-roman" })
         track.position.set(1030, 345);
-        this.addChild(track);
+        this.uiPlayerContainer.addChild(track);
 
         const artist = new Text("by Megadeth", { fontSize: 25, fill: 0x000000, fontFamily: "tahoma" })
         artist.position.set(1021, 380);
-        this.addChild(artist);
+        this.uiPlayerContainer.addChild(artist);
 
         // Nine-Slice Plane
         this.panel = new NineSlicePlane(Texture.from("Radio_off"), 50, 50, 50, 50);
@@ -47,15 +51,15 @@ export class Scene extends Container {
         this.panel.height = 380;
         this.panel.position.set(-580, 285);
 
-        this.addChild(this.panel);
+        this.recorderContainer.addChild(this.panel);
 
         const onOff = new Text("On/Off", { fontSize: 20, fill: 0x000000, fontFamily: "verdana" })
         onOff.position.set(-257, 593);
-        this.addChild(onOff);
+        this.recorderContainer.addChild(onOff);
 
         const rec = new Text("Rec.", { fontSize: 23, fill: 0x000000, fontFamily: "verdana" })
         rec.position.set(-350, 590);
-        this.addChild(rec);
+        this.recorderContainer.addChild(rec);
 
         const recorderButton = new RoundButton();
         recorderButton.pivot.set(this.panel.x);
@@ -64,7 +68,11 @@ export class Scene extends Container {
         recorderButton.eventMode = "static";
         recorderButton.on("pointerdown", this.recorderOnOff, this);
 
-        this.addChild(recorderButton);
+        this.uiPlayerContainer.y = screen.height * 2;
+
+        this.recorderContainer.addChild(recorderButton);
+        this.addChild(this.recorderContainer);
+        this.addChild(this.uiPlayerContainer);
     }
 
     // Would it be better to load both textures and make the other invisible on click?
@@ -76,6 +84,58 @@ export class Scene extends Container {
             this.panel.texture = Texture.from("Radio");
             this.recorderOn = true;
         }
-        this.callback();
+    }
+
+    public moveUI() {
+        let startTime = performance.now(); // Get the current timestamp
+        const duration = 2000; // Duration of the animation in milliseconds
+        const startY = screen.height;
+        const endY = 0; // Final position on the screen
+
+        const animate = (currentTime: number) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1)
+
+            if (progress < 1) {
+                // Update the position based on the progress of the animation
+                const newY = startY - (progress * (startY - endY));
+                this.recorderContainer.y = (Math.round(progress * screen.height));
+                this.uiPlayerContainer.y = newY;
+
+                // Request the next animation frame
+                requestAnimationFrame(animate);
+            } else {
+                // Animation complete
+                console.log("Animation complete!");
+            }
+        }
+
+        // Start the animation
+        requestAnimationFrame(animate);
+        this.moveBuck();
+    }
+
+    private moveBuck() {
+        let startTime = performance.now(); // Get the current timestamp
+        const duration = 2000; // Duration of the animation in milliseconds
+
+        const animate = (currentTime: number) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1)
+
+            if (progress < 1) {
+                // Update the position based on the progress of the animation
+                this.buckWithAmp.x = -(Math.round(progress * screen.width / 6));
+
+                // Request the next animation frame
+                requestAnimationFrame(animate);
+            } else {
+                // Animation complete
+                console.log("Animation complete!");
+            }
+        }
+
+        // Start the animation
+        requestAnimationFrame(animate);
     }
 }

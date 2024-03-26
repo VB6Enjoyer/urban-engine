@@ -69,7 +69,7 @@ export class BuckWithAmp extends Container {
         // Adds an onClick event to play a random sound when Buck is clicked.
         buck.eventMode = "static";
         buck.cursor = "pointer";
-        buck.on("pointerdown", this.playGuitar)
+        buck.on("pointerdown", this.playGuitar, this)
 
         amp.position.set(350, 300);
         amp.scale.set(2.3);

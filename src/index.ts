@@ -31,8 +31,8 @@ async function init() {
 	await Assets.loadBundle("fx");
 	await Assets.loadBundle("keyboard_inputs");
 
-	background = new Background(turnLightsOnOff);
-	scene = new Scene(play);
+	background = new Background(turnLightsOnOff, play);
+	scene = new Scene();
 
 	scene.scale.set(0.85);
 	scene.position.set(500, 450);
@@ -85,7 +85,8 @@ function turnLightsOnOff(): void {
 // TODO Add code to remove graph. For some reason it seems to be all bugged out.
 // TODO Position for key press is awful, need to configure it properly.
 function play(): void {
-	if (scene.recorderOn) {
+	scene.moveUI();
+	setTimeout(() => {
 		const tickerScene = new TickerScene();
 
 		Ticker.shared.add(function (deltaFrame) {
@@ -93,12 +94,13 @@ function play(): void {
 		})
 
 		app.stage.addChild(tickerScene);
-	} else {
-		const tickerScene = app.stage.children.find(child => child instanceof TickerScene)
-		if (tickerScene) {
-			app.stage.removeChild(tickerScene);
-		}
-	}
+	}, 2000);
+
+	/* const tickerScene = app.stage.children.find(child => child instanceof TickerScene)
+	if (tickerScene) {
+		app.stage.removeChild(tickerScene);
+	} */
+
 }
 
 window.dispatchEvent(new Event("resize"));
