@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@pixi/sound": "^5.2.3",
-    "pixi.js": "^7.4.0"
+    "pixi.js": "^7.4.0",
+    "tweedle.js": "^2.1.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^12.0.2",

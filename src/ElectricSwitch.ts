@@ -21,6 +21,7 @@ export class ElectricSwitch extends Container {
 
         Assets.init({ manifest: manifest });
         Assets.loadBundle("objects");
+        Assets.loadBundle("spreadsheet");
 
         this.electricSwitch = Sprite.from(switchOn);
 

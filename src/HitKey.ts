@@ -1,6 +1,7 @@
 import { Assets, Texture, Sprite, Container, Rectangle } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
 import { IHitbox } from "./IHitbox";
+import { Tween } from "tweedle.js";
 
 export class HitKey extends Container implements IHitbox {
 
@@ -18,8 +19,9 @@ export class HitKey extends Container implements IHitbox {
 
         // Class extending from Container.
         this.key = new Sprite(keyTexture);
+
         this.key.position.y = -120;
-        this.key.position.x = screen.width / 2;
+        this.key.position.x = screen.width / 2 - 2;
 
         this.physKey = new PhysicsContainer();
         this.physKey.speed.x = 50;
@@ -28,6 +30,13 @@ export class HitKey extends Container implements IHitbox {
 
         this.addChild(this.physKey);
         this.physKey.addChild(this.key);
+    }
+
+    public moveNote() {
+        new Tween(this.key)
+            .to({ y: 1020 }, 2000)
+            .start();
+        this.key.position.y = -120;
     }
 
     public getHitbox(): Rectangle {

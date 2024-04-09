@@ -1,12 +1,13 @@
 import { AnimatedSprite, Assets, Container, Sprite, Texture } from "pixi.js";
 import { manifest } from "./assets";
 import { sound } from "@pixi/sound";
+import { StateAnimation } from "./StateAnimation";
 
 export class BuckWithAmp extends Container {
 
     private canClick = true;
-    private buckAnimated: AnimatedSprite;
-    private notesAnimated: AnimatedSprite;
+    private buckAnimated: StateAnimation;
+    private notesAnimated: AnimatedSprite; // TODO Turn into StateAnimation
 
     constructor() {
         super();
@@ -22,26 +23,17 @@ export class BuckWithAmp extends Container {
         buck.anchor.set(0);
 
         // Animated sprite.
-        this.buckAnimated = new AnimatedSprite(
-            [
-                Texture.from("Buck-hd-eo"),
-                Texture.from("Buck-hu-eo"),
-                /*                 
-                Texture.from("Buck-hd-ec-s"),
-                Texture.from("Buck-hd-eh"),
-                Texture.from("Buck-hd-eh-s"),
-                Texture.from("Buck-hd-eo"),
-                Texture.from("Buck-hd-ey-s"),
-                Texture.from("Buck-hu-ec"),
-                Texture.from("Buck-hu-ec-s"),
-                Texture.from("Buck-hu-eh"),
-                Texture.from("Buck-hu-eh-s"), 
-                Texture.from("Buck-hu-eo-s")
-                */
-            ],
-            true
-        );
-        this.buckAnimated.animationSpeed = 0.1;
+        this.buckAnimated = new StateAnimation();
+
+        // TODO Use the addState function to add face animations
+        this.buckAnimated.addState("play", [
+            Texture.from("Buck-hd-eo"),
+            Texture.from("Buck-hu-eo"),
+        ]);
+
+        this.buckAnimated.addState("idle", [
+            Texture.from("Buck-hd-eo")
+        ]);
 
         this.notesAnimated = new AnimatedSprite(
             [
@@ -51,16 +43,16 @@ export class BuckWithAmp extends Container {
             true
         );
         this.notesAnimated.animationSpeed = 0.025;
-        this.notesAnimated.position.set(380, 50);
+        this.notesAnimated.position.set(350, 50);
         this.notesAnimated.scale.set(0.33);
         this.notesAnimated.visible = false;
         this.notesAnimated.onFrameChange = (frame: number) => {
             if (frame == 0) {
-                this.notesAnimated.position.set(380, 50);
+                this.notesAnimated.position.set(350, 50);
             }
 
             if (frame == 1) {
-                this.notesAnimated.position.set(480, 40);
+                this.notesAnimated.position.set(440, 40);
             }
         }
 
@@ -71,7 +63,7 @@ export class BuckWithAmp extends Container {
         buck.cursor = "pointer";
         buck.on("pointerdown", this.playGuitar, this)
 
-        amp.position.set(350, 300);
+        amp.position.set(310, 300);
         amp.scale.set(2.3);
 
         this.addChild(buck);
@@ -93,7 +85,7 @@ export class BuckWithAmp extends Container {
             }
 
             sound.play("sound");
-            this.buckAnimated.play();
+            this.buckAnimated.playState("play");
             this.notesAnimated.visible = true;
             this.notesAnimated.play();
 
@@ -124,10 +116,14 @@ export class BuckWithAmp extends Container {
             // Sets a cooldown before being able to play another sound.
             setTimeout(() => {
                 this.canClick = true;
-                this.buckAnimated.stop();
+                this.buckAnimated.playState("idle");
                 this.notesAnimated.stop();
                 this.notesAnimated.visible = false;
             }, cooldownTime);
         }
+    }
+
+    public update(frame: number) {
+        this.buckAnimated.update(frame);
     }
 }

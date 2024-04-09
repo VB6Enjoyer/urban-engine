@@ -7,7 +7,8 @@ export const manifest: AssetsManifest = {
             assets:
             {
                 "Room": "./background/room.jpeg",
-                "Room-Night": "./background/room-night.jpg"
+                "Room-Night": "./background/room-night.jpg",
+                "Stage": "./background/stage.png"
             }
         },
 
@@ -60,7 +61,13 @@ export const manifest: AssetsManifest = {
             assets:
             {
                 W_Key: "./ui/keyboard_mouse/white/T_W_Key_White.png",
-                E_Key: "./ui/keyboard_mouse/white/T_E_Key_White.png"
+                E_Key: "./ui/keyboard_mouse/white/T_E_Key_White.png",
+                S_Key: "./ui/keyboard_mouse/white/T_S_Key_White.png",
+                D_Key: "./ui/keyboard_mouse/white/T_D_Key_White.png",
+                F_Key: "./ui/keyboard_mouse/white/T_F_Key_White.png",
+                J_Key: "./ui/keyboard_mouse/white/T_J_Key_White.png",
+                K_Key: "./ui/keyboard_mouse/white/T_K_Key_White.png",
+                L_Key: "./ui/keyboard_mouse/white/T_L_Key_White.png",
             }
         },
 
@@ -70,6 +77,23 @@ export const manifest: AssetsManifest = {
             {
                 Notes_1: "./fx/notes1.png",
                 Notes_2: "./fx/notes2.png"
+            }
+        },
+
+        {
+            name: "fonts",
+            assets:
+            {
+                Chaos_Engine: "./fonts/chaos-engine-upgrade-store.ttf",
+                PixelifySans: "https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+            }
+        },
+
+        {
+            name: "spritesheet",
+            assets:
+            {
+                Spritesheet: "./spritesheet/textures.json"
             }
         }
     ]

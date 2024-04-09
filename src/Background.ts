@@ -1,4 +1,4 @@
-import { Assets, Container, Sprite, Texture, Text } from "pixi.js";
+import { Assets, Container, Sprite, Texture, Text, TextStyle } from "pixi.js";
 import { manifest } from "./assets";
 import { sound } from "@pixi/sound";
 import { ElectricSwitch } from "./ElectricSwitch";
@@ -7,6 +7,7 @@ import { Clock } from "./Clock";
 export class Background extends Container {
 
     private room: Sprite;
+    private stage: Sprite;
     private clock: Clock;
     private canClick: boolean = true;
     public lightsOn: boolean = true;
@@ -23,11 +24,19 @@ export class Background extends Container {
         Assets.init({ manifest: manifest });
         Assets.loadBundle("backgrounds");
         Assets.loadBundle("objects");
+        Assets.loadBundle("fonts");
+        Assets.loadBundle("spritesheet");
 
         this.content = new Container();
 
         this.room = Sprite.from("Room");
-        const guitar = Sprite.from("Guitar");
+        this.stage = Sprite.from("Stage");
+        this.stage.x = screen.width - 384;
+        this.stage.visible = false;
+
+        this.stage.scale.set(0.4799);
+
+        const guitar = Sprite.from("objects/guitar.png");
         const electricSwitch = new ElectricSwitch(Texture.from("Switch-On"), Texture.from("Switch-Off"));
         electricSwitch.on("switchPress", this.onSwitchClick, this)
 
@@ -54,9 +63,15 @@ export class Background extends Container {
         // Adds an onClick event to play a random chord when the guitar is clicked.
         guitar.eventMode = "static";
         guitar.cursor = "pointer";
-        guitar.on("pointerdown", this.onGuitarClick, this)
+        guitar.on("pointerdown", this.onGuitarClick, this);
 
-        const playText = new Text("Play", { fontSize: 60, fill: 0x000000, fontFamily: "arial" });
+        const menuTextStyle = new TextStyle({
+            fontSize: 60,
+            fill: 0x000000,
+            fontFamily: "PixelifySans"
+        });
+
+        const playText = new Text("Play", menuTextStyle);
         playText.anchor.set(0.5);
         playText.position.set(screen.width / 24, screen.height / 24);
         playText.eventMode = "static";
@@ -64,6 +79,7 @@ export class Background extends Container {
         playText.on("pointerdown", this.transitionToGameplay, this);
 
         this.content.addChild(this.room);
+        this.content.addChild(this.stage);
         this.content.addChild(this.clock);
         this.content.addChild(electricSwitch);
         this.content.addChild(guitar);
@@ -108,24 +124,35 @@ export class Background extends Container {
         let startTime = performance.now(); // Get the current timestamp
         const duration = 1250; // Duration of the animation in milliseconds
 
+        this.stage.visible = true;
+
         const animate = (currentTime: number) => {
             const elapsedTime = currentTime - startTime;
             const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1)
 
-            if (progress < 1) {
-                // Update the position based on the progress of the animation
-                this.content.x = -(Math.round(progress * screen.width));
+            // Lerp (linear interpolation) for a smoother transition
+            const contentX = this.lerp(0, (-screen.width + 380), progress); // Calculate content.x using lerp
+            this.content.x = contentX;
 
+            if (progress < 1) {
                 // Request the next animation frame
                 requestAnimationFrame(animate);
             } else {
                 // Animation complete
-                console.log("Animation complete!");
+                this.room.visible = false;
+
+                // Enforce exact final position to avoid variations.
+                this.content.x = -screen.width + 380;
             }
-        }
+        };
 
         // Start the animation
         requestAnimationFrame(animate);
         this.callback2();
+    }
+
+    // Helper function for linear interpolation. AI-generated for convenience.
+    private lerp(start: number, end: number, amount: number) {
+        return (1 - amount) * start + amount * end;
     }
 }

@@ -1,9 +1,12 @@
+// TODO Implement spritesheet into textures
+
 import { Application, Assets, Graphics, Ticker } from 'pixi.js';
 import { manifest } from "./assets";
 import { Scene } from './Scene';
 import { Background } from './Background';
 import { Keyboard } from './Keyboard';
 import { TickerScene } from './TickerScene';
+import { Group } from 'tweedle.js';
 
 const app = new Application<HTMLCanvasElement>({
 	view: document.getElementById("pixi-canvas") as HTMLCanvasElement,
@@ -27,6 +30,7 @@ async function init() {
 	await Assets.loadBundle("backgrounds");
 	await Assets.loadBundle("characters");
 	await Assets.loadBundle("objects");
+	await Assets.loadBundle("spritesheet");
 	await Assets.loadBundle("ui");
 	await Assets.loadBundle("fx");
 	await Assets.loadBundle("keyboard_inputs");
@@ -82,15 +86,34 @@ function turnLightsOnOff(): void {
 	}
 }
 
-// TODO Add code to remove graph. For some reason it seems to be all bugged out.
-// TODO Position for key press is awful, need to configure it properly.
+// TODO Clean up stuff outside of the screen.
 function play(): void {
 	scene.moveUI();
-	setTimeout(() => {
-		const tickerScene = new TickerScene();
 
-		Ticker.shared.add(function (deltaFrame) {
-			tickerScene.update(Ticker.shared.deltaMS, deltaFrame)
+	setTimeout(() => {
+		const tickerScene = new TickerScene([
+			['0', 700],
+			['5', 700],
+			['1', 700],
+			['1', 700],
+			['2', 700],
+			['3', 700],
+			['4', 700],
+			['5', 700],
+			['4', 700],
+			['3', 700],
+			['2', 700],
+			['1', 700],
+			['0', 700],
+			['2', 700],
+			['4', 700],
+			['3', 700],
+			['5', 700],
+		]);
+
+		Ticker.shared.add(function (_deltaFrame) {
+			Group.shared.update();
+			//tickerScene.update(Ticker.shared.deltaMS, deltaFrame)
 		})
 
 		app.stage.addChild(tickerScene);

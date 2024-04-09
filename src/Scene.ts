@@ -16,6 +16,7 @@ export class Scene extends Container {
 
         // Class extending from Container.
         this.buckWithAmp = new BuckWithAmp();
+        this.buckWithAmp.y = 20;
         this.addChild(this.buckWithAmp);
 
         this.recorderContainer = new Container();
@@ -45,7 +46,6 @@ export class Scene extends Container {
         artist.position.set(1021, 380);
         this.uiPlayerContainer.addChild(artist);
 
-        // Nine-Slice Plane
         this.panel = new NineSlicePlane(Texture.from("Radio_off"), 50, 50, 50, 50);
         this.panel.width = 480;
         this.panel.height = 380;
@@ -104,9 +104,6 @@ export class Scene extends Container {
 
                 // Request the next animation frame
                 requestAnimationFrame(animate);
-            } else {
-                // Animation complete
-                console.log("Animation complete!");
             }
         }
 
@@ -125,13 +122,10 @@ export class Scene extends Container {
 
             if (progress < 1) {
                 // Update the position based on the progress of the animation
-                this.buckWithAmp.x = -(Math.round(progress * screen.width / 6));
+                this.buckWithAmp.x = -(Math.round(progress * screen.width / 4));
 
                 // Request the next animation frame
                 requestAnimationFrame(animate);
-            } else {
-                // Animation complete
-                console.log("Animation complete!");
             }
         }
 
