@@ -1,0 +1,677 @@
+{
+  "division": 480,
+  "format": 1,
+  "tracks": [
+    [
+      {
+        "timeSignature": {
+          "denominator": 4,
+          "metronome": 24,
+          "numerator": 4,
+          "thirtyseconds": 8
+        },
+        "delta": 0
+      },
+      {
+        "setTempo": {
+          "microsecondsPerQuarter": 500000
+        },
+        "delta": 0
+      },
+      {
+        "endOfTrack": true,
+        "delta": 7896
+      }
+    ],
+    [
+      {
+        "trackName": "PART GUITAR",
+        "delta": 0
+      },
+      {
+        "noteOn": {
+          "noteNumber": 97,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 0
+      },
+      {
+        "noteOff": {
+          "noteNumber": 97,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 60
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 180
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 60
+      },
+      {
+        "noteOn": {
+          "noteNumber": 97,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 60
+      },
+      {
+        "noteOff": {
+          "noteNumber": 97,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 97,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 97,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 100,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 100,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 101,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 101,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 100,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 600
+      },
+      {
+        "noteOff": {
+          "noteNumber": 100,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 600
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 100,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 360
+      },
+      {
+        "noteOff": {
+          "noteNumber": 100,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 100,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 100,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 105
+      },
+      {
+        "noteOn": {
+          "noteNumber": 96,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 96,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 64
+      },
+      {
+        "noteOn": {
+          "noteNumber": 100,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 100,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 25
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 15
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 104
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 16
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 40
+      },
+      {
+        "noteOn": {
+          "noteNumber": 97,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 200
+      },
+      {
+        "noteOff": {
+          "noteNumber": 97,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 99,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 99,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 100,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 100,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 101,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 101,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 97,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOn": {
+          "noteNumber": 98,
+          "velocity": 100
+        },
+        "channel": 0,
+        "delta": 0
+      },
+      {
+        "noteOff": {
+          "noteNumber": 97,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 120
+      },
+      {
+        "noteOff": {
+          "noteNumber": 98,
+          "velocity": 0
+        },
+        "channel": 0,
+        "delta": 0
+      },
+      {
+        "endOfTrack": true,
+        "delta": 96
+      }
+    ]
+  ]
+}

@@ -1,8 +1,12 @@
+// TODO Modify the code so that multiple particles can be played at once, by adding one particle for each hitZone and checking which key got pressed to spawn the particle :)
+
 import { Assets, Texture, Container, Rectangle, Graphics } from "pixi.js";
 import { IUpdateable } from "./IUpdateable";
 import { IHitbox, checkCollision } from "./IHitbox";
 import { HitKey } from "./HitKey";
 import { HitZone } from "./HitZone";
+import * as particle from "../src/emitter.json";
+import { Emitter, LinkedListContainer, upgradeConfig } from "@pixi/particle-emitter";
 
 export class TickerScene extends Container implements IUpdateable, IHitbox {
 
@@ -14,12 +18,17 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     private notesArray: [string, number][]; // An array of arrays that includes a note, and a delay value.
     private noteKeyMap: { [note: string]: HitKey[] } = {};
 
+    private hitParticle: Emitter;
+    private hitParticleContainer: LinkedListContainer;
+
     constructor(notesArray: [string, number][]) {
         super();
 
         Assets.loadBundle("keyboard_inputs");
+        Assets.loadBundle("fx");
 
         this.hitZoneContainer = this.setupHitZones();
+        this.hitParticleContainer = new LinkedListContainer();
 
         this.notesArray = notesArray;
 
@@ -36,6 +45,13 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.addChild(this.hitZoneContainer);
 
         document.addEventListener("keydown", this.onKeyDown.bind(this));
+
+        this.hitParticle = new Emitter(this.hitParticleContainer, upgradeConfig(particle, "Fire"));
+        this.hitParticle.spawnPos.y = 600;
+        this.hitParticle.emit = false;
+        this.addChild(this.hitParticleContainer);
+
+        //this.emitter.autoUpdate = true;
 
         this.notesMove();
     }
@@ -118,8 +134,10 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
                         if (hitKey.visible && checkCollision(hitKey, hitZone)) {
                             hitKey.visible = false;
-                            console.log("+100 points");
-                            // Break out of the loop after handling the collision
+
+                            this.hitParticle.spawnPos.x = hitKey.x + 1025;
+                            this.hitParticle.emit = true;
+
                             break;
                         }
                     }
@@ -157,6 +175,6 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     }
 
     public update(_deltaFrame: number, _deltaTime: number) {
-        // Not really being used currently, not even sure if this even has a function for my intended purposes.
+        this.hitParticle.update(_deltaTime)
     }
 }

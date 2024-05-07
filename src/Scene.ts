@@ -23,6 +23,7 @@ export class Scene extends Container {
         this.uiPlayerContainer = new Container();
 
         Assets.loadBundle("ui");
+        Assets.loadBundle("fx");
 
         const ui_player = Sprite.from("UI_Player");
 
@@ -30,7 +31,7 @@ export class Scene extends Container {
         ui_player.position.set(970, 260);
         this.uiPlayerContainer.addChild(ui_player);
 
-        Assets.loadBundle("fx");
+
 
         // Text
         const nowPlaying = new Text("Now Playing:", { fontSize: 23, fill: 0x000000, fontFamily: "tahoma" });

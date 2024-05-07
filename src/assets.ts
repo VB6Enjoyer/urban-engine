@@ -76,7 +76,9 @@ export const manifest: AssetsManifest = {
             assets:
             {
                 Notes_1: "./fx/notes1.png",
-                Notes_2: "./fx/notes2.png"
+                Notes_2: "./fx/notes2.png",
+                NoteHitParticle: "./fx/particle.png",
+                Fire: "./fx/fire.png"
             }
         },
 

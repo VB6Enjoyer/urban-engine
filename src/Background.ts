@@ -14,12 +14,14 @@ export class Background extends Container {
     private callback: Function;
     private callback2: Function;
     private content: Container;
+    public files: File[] = [];
 
     constructor(callback: () => void, callback2: () => void) {
         super();
 
         this.callback = callback;
         this.callback2 = callback2;
+        this.files = [];
 
         Assets.init({ manifest: manifest });
         Assets.loadBundle("backgrounds");
@@ -121,6 +123,51 @@ export class Background extends Container {
     }
 
     public transitionToGameplay() {
+        // Find the existing file input elements in the DOM
+        const midiFileInput = document.getElementById('midiFileInput') as HTMLInputElement;
+        const oggFileInput = document.getElementById('oggFileInput') as HTMLInputElement;
+
+        // Function to handle MIDI file selection
+        const handleMidiFileSelect = (event: Event) => {
+            const input = event.target as HTMLInputElement;
+            const midiFiles = Array.from(input.files || []).filter(file => file.name.endsWith('.mid') || file.name.endsWith('.midi'));
+            this.files.push(...midiFiles);
+            if (midiFiles.length > 0) {
+                // Prompt for the OGG file
+                oggFileInput.click();
+            }
+        };
+
+        // Function to handle OGG file selection
+        const handleOggFileSelect = (event: Event) => {
+            const input = event.target as HTMLInputElement;
+            const oggFiles = Array.from(input.files || []).filter(file => file.name.endsWith('.ogg'));
+            this.files.push(...oggFiles);
+            // Continue with gameplay logic if both MIDI and OGG files are selected
+            if (this.files.some(file => file.name.endsWith('.mid') || file.name.endsWith('.midi')) &&
+                this.files.some(file => file.name.endsWith('.ogg'))) {
+                // Remove the event listeners to avoid multiple executions
+                midiFileInput.removeEventListener('change', handleMidiFileSelect);
+                oggFileInput.removeEventListener('change', handleOggFileSelect);
+                // Continue with gameplay logic
+                this.continueWithGameplayLogic();
+            } else {
+                // If MIDI or OGG file is not selected, show an alert to the user
+                alert('Please select both a MIDI file and an OGG file.');
+            }
+        };
+
+        // Attach event listener for MIDI file input
+        midiFileInput.addEventListener('change', handleMidiFileSelect);
+
+        // Attach event listener for OGG file input
+        oggFileInput.addEventListener('change', handleOggFileSelect);
+
+        // Trigger the MIDI file select window
+        midiFileInput.click();
+    }
+
+    private continueWithGameplayLogic() {
         let startTime = performance.now(); // Get the current timestamp
         const duration = 1250; // Duration of the animation in milliseconds
 
