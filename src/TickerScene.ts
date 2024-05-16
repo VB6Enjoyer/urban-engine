@@ -1,6 +1,4 @@
-// TODO Modify the code so that multiple particles can be played at once, by adding one particle for each hitZone and checking which key got pressed to spawn the particle :)
-
-import { Assets, Texture, Container, Rectangle, Graphics } from "pixi.js";
+import { Assets, Texture, Container, Rectangle, Graphics, Ticker } from "pixi.js";
 import { IUpdateable } from "./IUpdateable";
 import { IHitbox, checkCollision } from "./IHitbox";
 import { HitKey } from "./HitKey";
@@ -9,17 +7,23 @@ import * as particle from "../src/emitter.json";
 import { Emitter, LinkedListContainer, upgradeConfig } from "@pixi/particle-emitter";
 
 export class TickerScene extends Container implements IUpdateable, IHitbox {
-
     private hitZoneContainer: Container;
     private hitZones: HitZone[] = [];
-
     private trackGraph: Graphics;
-
     private notesArray: [string, number][]; // An array of arrays that includes a note, and a delay value.
     private noteKeyMap: { [note: string]: HitKey[] } = {};
-
     private hitParticle: Emitter;
     private hitParticleContainer: LinkedListContainer;
+    private startTime: number;
+    private notesToSchedule: { time: number; note: string }[] = [];
+    private keyMap = {
+        "0": "S",
+        "1": "D",
+        "2": "F",
+        "3": "J",
+        "4": "K",
+        "5": "L"
+    };
 
     constructor(notesArray: [string, number][]) {
         super();
@@ -31,6 +35,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.hitParticleContainer = new LinkedListContainer();
 
         this.notesArray = notesArray;
+        this.startTime = 0;
 
         // Graph to wrap the area of the screen that holds the gameplay elements
         this.trackGraph = new Graphics();
@@ -51,9 +56,8 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.hitParticle.emit = false;
         this.addChild(this.hitParticleContainer);
 
-        //this.emitter.autoUpdate = true;
-
-        this.notesMove();
+        // Pre-calculate note times
+        this.preCalculateNoteTimes();
     }
 
     private setupHitZones() {
@@ -73,43 +77,38 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         return hitZoneContainer;
     }
 
-    // Handles the logic that makes notes appear and be playable
-    private async notesMove() {
-        const keyMap = {
-            "0": "S",
-            "1": "D",
-            "2": "F",
-            "3": "J",
-            "4": "K",
-            "5": "L"
-        };
+    private preCalculateNoteTimes(): void {
+        let cumulativeTime = 0;
 
         for (const [note, delay] of this.notesArray) {
-            await this.delay(delay);
-
-            const curNote = keyMap[note as keyof typeof keyMap];
-            const keyTexture = curNote + "_Key";
-            const hitZoneIndex = parseInt(note);
-
-            if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) {
-                let curKey = new HitKey(Texture.from(keyTexture));
-                curKey.x = this.hitZones[hitZoneIndex].x;
-                this.addChild(curKey);
-                curKey.moveNote();
-
-                if (!this.noteKeyMap[curNote]) {
-                    this.noteKeyMap[curNote] = [];
-                }
-                this.noteKeyMap[curNote].push(curKey);
-            }
+            cumulativeTime += delay;
+            this.notesToSchedule.push({ time: cumulativeTime, note });
         }
     }
 
-    private delay(ms: number) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
+    public startScheduling(): void {
+        this.startTime = performance.now();
+        Ticker.shared.add(this.update.bind(this));
     }
 
-    // TODO Add logic to handle score and disappear notes pressed too early.
+    private spawnNote(note: string): void {
+        const curNote = this.keyMap[note as keyof typeof this.keyMap];
+        const keyTexture = curNote + "_Key";
+        const hitZoneIndex = parseInt(note);
+
+        if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) {
+            let curKey = new HitKey(Texture.from(keyTexture));
+            curKey.x = this.hitZones[hitZoneIndex].x;
+            this.addChild(curKey);
+            curKey.moveNote();
+
+            if (!this.noteKeyMap[curNote]) {
+                this.noteKeyMap[curNote] = [];
+            }
+            this.noteKeyMap[curNote].push(curKey);
+        }
+    }
+
     private onKeyDown(event: KeyboardEvent) {
         const keyCodeMap = {
             KeyS: 0,
@@ -152,7 +151,6 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         return this.hitZones[0].getBounds(); // Adjust based on your needs
     }
 
-    // Not currently in use
     public slideIntoScreen() {
         let startTime = performance.now(); // Get the current timestamp
         const duration = 1250; // Duration of the animation in milliseconds
@@ -174,7 +172,16 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         requestAnimationFrame(animate);
     }
 
-    public update(_deltaFrame: number, _deltaTime: number) {
-        this.hitParticle.update(_deltaTime)
+    public update(deltaMS: number): void {
+        const currentTime = performance.now() - this.startTime;
+
+        while (this.notesToSchedule.length > 0 && this.notesToSchedule[0].time <= currentTime) {
+            const noteInfo = this.notesToSchedule.shift();
+            if (noteInfo) {
+                this.spawnNote(noteInfo.note);
+            }
+        }
+
+        this.hitParticle.update(deltaMS);
     }
 }

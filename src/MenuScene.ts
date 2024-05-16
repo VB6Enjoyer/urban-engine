@@ -57,6 +57,32 @@ export class MenuScene extends SceneAbstract {
         }
     }
 
+    private async decodeAudioFile(oggFile: Blob): Promise<AudioBuffer> {
+        return new Promise<AudioBuffer>((resolve, reject) => {
+            const reader = new FileReader();
+
+            // Define the onload function for the FileReader
+            reader.onload = async () => {
+                try {
+                    const audioContext = new AudioContext();
+                    const audioData = reader.result as ArrayBuffer;
+                    const audioBuffer = await audioContext.decodeAudioData(audioData);
+                    resolve(audioBuffer);
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            // Define the onerror function for the FileReader
+            reader.onerror = (_event) => {
+                reject(reader.error);
+            };
+
+            // Read the .ogg file as ArrayBuffer
+            reader.readAsArrayBuffer(oggFile);
+        });
+    }
+
     // TODO Clean up stuff outside of the screen.
     private async play(): Promise<void> {
         if (this.background.files) {
@@ -67,45 +93,28 @@ export class MenuScene extends SceneAbstract {
             try {
                 const parsedMidiFile = await parseMidiFile(midiFile);
 
-                // Create a new FileReader to read the .ogg file
-                const reader = new FileReader();
+                // Decode the audio file
+                const audioBuffer = await this.decodeAudioFile(oggFile);
 
-                // Define the onload function for the FileReader
-                reader.onload = async () => {
-                    // Once the file is loaded, decode the audio data to AudioBuffer
-                    const audioContext = new AudioContext();
-                    const audioData = reader.result as ArrayBuffer;
+                setTimeout(() => {
+                    // Proceed with the rest of the code after audio decoding is complete
+                    const tickerScene = new TickerScene(parsedMidiFile);
+                    tickerScene.startScheduling();
+                    sound.add("song", audioBuffer);
 
-                    try {
-                        const audioBuffer = await audioContext.decodeAudioData(audioData);
+                    // TODO Find a better implementation that doesn't require using a specific timeout for the song to play.
+                    setTimeout(() => {
+                        sound.play("song");
+                    }, 1200);
 
-                        sound.add("song", audioBuffer);
+                    this.addChild(tickerScene);
 
-                        setTimeout(() => {
-                            const tickerScene = new TickerScene(parsedMidiFile);
-                            // This works, but it makes particles not appear and doesn't seem to have any practical use.
-                            //SceneManager.changeScene(tickerScene)
-
-                            setTimeout(() => {
-                                sound.play("song");
-                            }, 1200)
-
-                            this.addChild(tickerScene);
-
-                            Ticker.shared.add(function (_deltaFrame) {
-                                Group.shared.update();
-                                tickerScene.update(Ticker.shared.deltaMS, _deltaFrame);
-                            });
-                        }, 2000);
-                    } catch (error) {
-                        console.error('Error decoding audio data:', error);
-                    }
-                };
-
-                // Read the .ogg file as ArrayBuffer
-                reader.readAsArrayBuffer(oggFile);
+                    Ticker.shared.add((_deltaFrame) => {
+                        Group.shared.update();
+                    });
+                }, 2000);
             } catch (error) {
-                console.error('Error parsing MIDI file:', error);
+                console.error('Error parsing MIDI file or decoding audio:', error);
             }
         }
     }

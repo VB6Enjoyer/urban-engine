@@ -45,12 +45,13 @@ function processMidiJson(json: any) {
 
     for (let i = 0; i < jsonArray[2][1].length; i++) {
         const currentObject = jsonArray[2][1][i];
+        const previousObject = jsonArray[2][1][i - 1];
 
         if (currentObject.noteOn) {
-            if (jsonArray[2][1][i - 1].noteOn) { // If the previous note is a noteOn, then it is a chord and only the delta of one note is necessary.
+            if (previousObject.noteOn) { // If the previous note is a noteOn, then it is a chord and only the delta of one note is necessary.
                 notesArray.push([String(currentObject.noteOn.noteNumber - 96), ((currentObject.delta) * msPerTick)]);
             } else {
-                notesArray.push([String(currentObject.noteOn.noteNumber - 96), ((currentObject.delta + jsonArray[2][1][i + 1].delta) * msPerTick)]);
+                notesArray.push([String(currentObject.noteOn.noteNumber - 96), ((currentObject.delta + previousObject.delta) * msPerTick)]);
             }
         }
     }
