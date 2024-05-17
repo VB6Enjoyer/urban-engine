@@ -1,4 +1,4 @@
-import { Assets, Texture, Container, Rectangle, Graphics, Ticker } from "pixi.js";
+import { Assets, Texture, Container, Rectangle, Graphics, Ticker, Sprite, Text } from "pixi.js";
 import { IUpdateable } from "./IUpdateable";
 import { IHitbox, checkCollision } from "./IHitbox";
 import { HitKey } from "./HitKey";
@@ -25,11 +25,17 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         "5": "L"
     };
 
+    private uiPlayerContainer: Container;
+    private scoreValueText: Text;
+
+    public multiplier: String;
+
     constructor(notesArray: [string, number][]) {
         super();
 
         Assets.loadBundle("keyboard_inputs");
         Assets.loadBundle("fx");
+        Assets.loadBundle("ui");
 
         this.hitZoneContainer = this.setupHitZones();
         this.hitParticleContainer = new LinkedListContainer();
@@ -56,19 +62,49 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.hitParticle.emit = false;
         this.addChild(this.hitParticleContainer);
 
+        this.multiplier = "x1";
+
+        this.uiPlayerContainer = new Container();
+
+        const ui_player = Sprite.from("UI_Player");
+
+        ui_player.scale.set(1.5)
+        ui_player.position.set(970, 260);
+        this.uiPlayerContainer.addChild(ui_player)
+
+        const scoreText = new Text("Score:", { fontSize: 23, fill: 0x000000, fontFamily: "tahoma" });
+        scoreText.position.set(1020, 315);
+        scoreText.scale.set(1.1); // This turns text into a texture, so it becomes blurry when upscaled.   
+        this.uiPlayerContainer.addChild(scoreText);
+
+        this.scoreValueText = new Text("0", { fontSize: 30, fill: 0x000000, fontFamily: "times-new-roman" })
+        this.scoreValueText.position.set(1030, 345);
+        this.uiPlayerContainer.addChild(this.scoreValueText);
+
+        const multiplier = new Text("x1", { fontSize: 25, fill: 0x000000, fontFamily: "tahoma" })
+        multiplier.position.set(1021, 380);
+        this.uiPlayerContainer.addChild(multiplier);
+
+        this.uiPlayerContainer.x = this.trackGraph.x - this.trackGraph.x / 2.66;
+        this.uiPlayerContainer.y = screen.height * 2;
+
+        this.addChild(this.uiPlayerContainer);
+
         // Pre-calculate note times
         this.preCalculateNoteTimes();
+        this.slideIntoScreen();
     }
 
     private setupHitZones() {
         // Create HitZone instances and position them
         const positions = [
-            [-360, -100], [-250, -100], [-140, -100], [-30, -100], [80, -100], [190, -100]
+            [-360, 0], [-250, 0], [-140, 0], [-30, 0], [80, 0], [190, 0]
         ];
 
         let hitZoneContainer = new Container();
         positions.forEach((pos) => {
             const hitZone = new HitZone();
+            console.log(hitZone.y);
             hitZone.position.set(pos[0], pos[1]);
             this.hitZones.push(hitZone);
             hitZoneContainer.addChild(hitZone);
@@ -128,11 +164,12 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
                 const hitKeys = this.noteKeyMap[keyCode.charAt(3)];
                 for (const hitKey of hitKeys) {
                     const hitZoneIndex = keyIndex;
-                    if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) {
+                    if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) { // TODO Seems like there's a bit of a margin for key presses outside of the hitzone
                         const hitZone = this.hitZones[hitZoneIndex];
 
                         if (hitKey.visible && checkCollision(hitKey, hitZone)) {
                             hitKey.visible = false;
+                            this.calculateScore(hitKey, hitZone);
 
                             this.hitParticle.spawnPos.x = hitKey.x + 1025;
                             this.hitParticle.emit = true;
@@ -142,18 +179,35 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
                     }
                 }
             } catch (error) {
-                console.error("This note is not in the map yet. You may ignore this, it's just an exception handler, gameplay works still. TODO: Fix this crap!");
+                console.error(error);
             }
         }
+    }
+
+    // TODO Implement multiplier
+    private calculateScore(hitKey: HitKey, hitZone: HitZone) {
+        const keyPositionAtPress = hitKey.getPosition() - (hitKey.height / 2);
+        const hitZonePosition = 540;
+        const hitZoneCenter = hitZonePosition + (Math.abs(hitZone.height) / 2);
+
+        const distanceFromCenter = Math.abs(keyPositionAtPress - hitZoneCenter);
+
+        const calculatedScore = 200 - distanceFromCenter;
+
+        this.scoreValueText.text = (Number(this.scoreValueText.text) + Math.round(calculatedScore)).toString();
     }
 
     public getHitbox(): Rectangle {
         return this.hitZones[0].getBounds(); // Adjust based on your needs
     }
 
+    // TODO Slide the trackGraph into the screen.
     public slideIntoScreen() {
         let startTime = performance.now(); // Get the current timestamp
         const duration = 1250; // Duration of the animation in milliseconds
+
+        //const startY = screen.height;
+        //const endY = 0; // Final position on the screen
 
         const animate = (currentTime: number) => {
             const elapsedTime = currentTime - startTime;
@@ -161,7 +215,9 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
             if (progress < 1) {
                 // Update the position based on the progress of the animation
-                this.trackGraph.y = -(Math.round(progress * screen.height - 369));
+                //this.trackGraph.y = -(Math.round(progress * screen.height - 369));
+                const newY = -(Math.round(progress * screen.height - 1425)); // TODO This REALLY needs a better implementation. It's currently shit.
+                this.uiPlayerContainer.y = newY;
 
                 // Request the next animation frame
                 requestAnimationFrame(animate);

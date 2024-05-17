@@ -105,7 +105,7 @@ export class MenuScene extends SceneAbstract {
                     // TODO Find a better implementation that doesn't require using a specific timeout for the song to play.
                     setTimeout(() => {
                         sound.play("song");
-                    }, 1200);
+                    }, 1300);
 
                     this.addChild(tickerScene);
 

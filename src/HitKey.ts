@@ -42,4 +42,8 @@ export class HitKey extends Container implements IHitbox {
     public getHitbox(): Rectangle {
         return this.physKey.getBounds();
     }
+
+    public getPosition(): number {
+        return this.key.y;
+    }
 }
