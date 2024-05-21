@@ -27,8 +27,10 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
     private uiPlayerContainer: Container;
     private scoreValueText: Text;
+    private multiplierText: Text;
 
-    public multiplier: String;
+    private multiplier: number;
+    private noteStreak: number;
 
     constructor(notesArray: [string, number][]) {
         super();
@@ -62,7 +64,8 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.hitParticle.emit = false;
         this.addChild(this.hitParticleContainer);
 
-        this.multiplier = "x1";
+        this.multiplier = 1;
+        this.noteStreak = 0;
 
         this.uiPlayerContainer = new Container();
 
@@ -81,9 +84,9 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.scoreValueText.position.set(1030, 345);
         this.uiPlayerContainer.addChild(this.scoreValueText);
 
-        const multiplier = new Text("x1", { fontSize: 25, fill: 0x000000, fontFamily: "tahoma" })
-        multiplier.position.set(1021, 380);
-        this.uiPlayerContainer.addChild(multiplier);
+        this.multiplierText = new Text("x" + this.multiplier.toString(), { fontSize: 25, fill: 0x000000, fontFamily: "tahoma" })
+        this.multiplierText.position.set(1021, 380);
+        this.uiPlayerContainer.addChild(this.multiplierText);
 
         this.uiPlayerContainer.x = this.trackGraph.x - this.trackGraph.x / 2.66;
         this.uiPlayerContainer.y = screen.height * 2;
@@ -136,6 +139,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
             let curKey = new HitKey(Texture.from(keyTexture));
             curKey.x = this.hitZones[hitZoneIndex].x;
             this.addChild(curKey);
+            curKey.missed = false;
             curKey.moveNote();
 
             if (!this.noteKeyMap[curNote]) {
@@ -159,21 +163,36 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         const keyIndex = keyCodeMap[keyCode];
 
         if (keyIndex !== undefined && this.noteKeyMap[keyCode.charAt(3)]) {
-
             try {
                 const hitKeys = this.noteKeyMap[keyCode.charAt(3)];
+                let collisionDetected = false;
+
                 for (const hitKey of hitKeys) {
                     const hitZoneIndex = keyIndex;
-                    if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) { // TODO Seems like there's a bit of a margin for key presses outside of the hitzone
+                    if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) { // Ensure within valid hitZone index
                         const hitZone = this.hitZones[hitZoneIndex];
 
                         if (hitKey.visible && checkCollision(hitKey, hitZone)) {
                             hitKey.visible = false;
-                            this.calculateScore(hitKey, hitZone);
+                            this.noteStreak += 1;
+                            const multiplier = this.setMultiplier(this.noteStreak);
+                            this.calculateScore(hitKey, hitZone, multiplier);
 
                             this.hitParticle.spawnPos.x = hitKey.x + 1025;
                             this.hitParticle.emit = true;
 
+                            collisionDetected = true; // Collision detected, no need to check further
+                            break;
+                        }
+                    }
+                }
+
+                // If no collision was detected, reset the noteStreak.
+                if (!collisionDetected) {
+                    for (const hitKey of hitKeys) {
+                        if (hitKey.visible) {
+                            this.noteStreak = 0;
+                            this.setMultiplier(this.noteStreak);
                             break;
                         }
                     }
@@ -184,17 +203,32 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         }
     }
 
-    // TODO Implement multiplier
-    private calculateScore(hitKey: HitKey, hitZone: HitZone) {
+    private calculateScore(hitKey: HitKey, hitZone: HitZone, multiplier: number) {
         const keyPositionAtPress = hitKey.getPosition() - (hitKey.height / 2);
         const hitZonePosition = 540;
         const hitZoneCenter = hitZonePosition + (Math.abs(hitZone.height) / 2);
 
         const distanceFromCenter = Math.abs(keyPositionAtPress - hitZoneCenter);
 
-        const calculatedScore = 200 - distanceFromCenter;
+        const calculatedScore = (200 - distanceFromCenter) * multiplier;
 
         this.scoreValueText.text = (Number(this.scoreValueText.text) + Math.round(calculatedScore)).toString();
+    }
+
+    private setMultiplier(noteStreak: number): number {
+        if (noteStreak < 2) {
+            this.multiplier = 1;
+        } else if (noteStreak >= 4 && noteStreak < 16) {
+            this.multiplier = 2;
+        } else if (noteStreak >= 16 && noteStreak < 24) {
+            this.multiplier = 3;
+        } else if (noteStreak >= 24) {
+            this.multiplier = 4;
+        }
+
+        this.multiplierText.text = "x" + this.multiplier.toString();
+
+        return this.multiplier = 1;
     }
 
     public getHitbox(): Rectangle {
@@ -235,6 +269,20 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
             const noteInfo = this.notesToSchedule.shift();
             if (noteInfo) {
                 this.spawnNote(noteInfo.note);
+            }
+        }
+
+        // Check for notes that have gone past the hit zones
+        // TODO This might not be an optimal implementation and might be prone to errors. Further testing needed.
+        for (const key in this.noteKeyMap) {
+            const hitKeys = this.noteKeyMap[key];
+            for (let i = hitKeys.length - 1; i >= 0; i--) {
+                const hitKey = hitKeys[i];
+                if (hitKey.visible && hitKey.getPosition() > 540 + this.hitZones[0].height && !hitKey.missed) {
+                    this.noteStreak = 0;
+                    hitKey.missed = true;
+                    this.setMultiplier(this.noteStreak);
+                }
             }
         }
 

@@ -10,12 +10,16 @@ export class HitKey extends Container implements IHitbox {
     public key: Sprite;
     private physKey: PhysicsContainer;
 
+    public missed: boolean;
+
     constructor(keyTexture: Texture) {
         super();
 
         Assets.loadBundle("keyboard_inputs");
 
         this.keyTexture = keyTexture;
+
+        this.missed = false;
 
         // Class extending from Container.
         this.key = new Sprite(keyTexture);
