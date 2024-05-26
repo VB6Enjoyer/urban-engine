@@ -6,7 +6,7 @@ export class Scene extends Container {
 
     public recorderOn = false;
     private panel: NineSlicePlane;
-    private buckWithAmp: BuckWithAmp;
+    public buckWithAmp: BuckWithAmp;
 
     private recorderContainer: Container;
 

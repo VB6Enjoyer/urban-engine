@@ -8,14 +8,14 @@ import { Emitter, LinkedListContainer, upgradeConfig } from "@pixi/particle-emit
 
 export class TickerScene extends Container implements IUpdateable, IHitbox {
     private hitZoneContainer: Container;
-    private hitZones: HitZone[] = [];
-    private trackGraph: Graphics;
-    private notesArray: [string, number][]; // An array of arrays that includes a note, and a delay value.
-    private noteKeyMap: { [note: string]: HitKey[] } = {};
-    private hitParticle: Emitter;
     private hitParticleContainer: LinkedListContainer;
-    private startTime: number;
+
+    private hitZones: HitZone[] = [];
+    private hitParticle: Emitter;
+
+    private notesArray: [string, number][]; // An array of arrays that includes a note, and a delay value.
     private notesToSchedule: { time: number; note: string }[] = [];
+    private noteKeyMap: { [note: string]: HitKey[] } = {};
     private keyMap = {
         "0": "S",
         "1": "D",
@@ -25,12 +25,14 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         "5": "L"
     };
 
+    private trackGraph: Graphics;
     private uiPlayerContainer: Container;
     private scoreValueText: Text;
     private multiplierText: Text;
 
     private multiplier: number;
     private noteStreak: number;
+    private startTime: number;
 
     constructor(notesArray: [string, number][]) {
         super();
@@ -89,7 +91,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.uiPlayerContainer.addChild(this.multiplierText);
 
         this.uiPlayerContainer.x = this.trackGraph.x - this.trackGraph.x / 2.66;
-        this.uiPlayerContainer.y = screen.height * 2;
+        this.uiPlayerContainer.y = screen.height;
 
         this.addChild(this.uiPlayerContainer);
 
@@ -238,10 +240,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     // TODO Slide the trackGraph into the screen.
     public slideIntoScreen() {
         let startTime = performance.now(); // Get the current timestamp
-        const duration = 1250; // Duration of the animation in milliseconds
-
-        //const startY = screen.height;
-        //const endY = 0; // Final position on the screen
+        const duration = 500; // Duration of the animation in milliseconds
 
         const animate = (currentTime: number) => {
             const elapsedTime = currentTime - startTime;
@@ -249,7 +248,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
             if (progress < 1) {
                 // Update the position based on the progress of the animation
-                //this.trackGraph.y = -(Math.round(progress * screen.height - 369));
+                this.trackGraph.y = -(Math.round(progress * screen.height / 7));
                 const newY = -(Math.round(progress * screen.height - 1425)); // TODO This REALLY needs a better implementation. It's currently shit.
                 this.uiPlayerContainer.y = newY;
 

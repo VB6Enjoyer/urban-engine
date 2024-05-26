@@ -1,0 +1,13 @@
+{
+    "controls": {
+        "key1": "S",
+        "key2": "D",
+        "key3": "F",
+        "key4": "J",
+        "key5": "K",
+        "key6": "L"
+    },
+    "audio": {
+        "volume": 100
+    }
+}

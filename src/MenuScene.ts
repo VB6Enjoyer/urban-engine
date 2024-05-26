@@ -19,8 +19,6 @@ export class MenuScene extends SceneAbstract {
         super();
         Assets.init({ manifest: manifest });
 
-        // Load the bundles you need
-
         Assets.loadBundle("backgrounds");
         Assets.loadBundle("characters");
         Assets.loadBundle("objects");
@@ -86,6 +84,10 @@ export class MenuScene extends SceneAbstract {
     // TODO Clean up stuff outside of the screen.
     private async play(): Promise<void> {
         if (this.background.files) {
+            this.scene.buckWithAmp.canClick = false;
+            if (!this.background.lightsOn) {
+                this.turnLightsOnOff();
+            }
             this.scene.moveUI();
 
             const midiFile = this.background.files[0];
@@ -103,6 +105,7 @@ export class MenuScene extends SceneAbstract {
                     sound.add("song", audioBuffer);
 
                     // TODO Find a better implementation that doesn't require using a specific timeout for the song to play.
+                    // This current one also probably difficults pausing the song and all. FUCK.
                     setTimeout(() => {
                         sound.play("song");
                     }, 1300);

@@ -5,9 +5,9 @@ import { StateAnimation } from "./StateAnimation";
 
 export class BuckWithAmp extends Container {
 
-    private canClick = true;
+    public canClick = true;
     private buckAnimated: StateAnimation;
-    private notesAnimated: AnimatedSprite; // TODO Turn into StateAnimation
+    private notesAnimated: AnimatedSprite; // TODO Turn into StateAnimation.
 
     constructor() {
         super();
