@@ -288,3 +288,9 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.hitParticle.update(deltaMS);
     }
 }
+
+/* KNOWN BUGS:
+- MIDI notes that don't have a "0" duration value WILL cause desynchronization due to how the note delays are calculated.
+
+- Playing two or more notes too close to each other can cause the note streak to reset, unless seemingly played simultaneously. Can't yet replicate bug properly.
+*/

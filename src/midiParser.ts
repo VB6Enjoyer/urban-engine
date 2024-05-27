@@ -37,7 +37,31 @@ function processMidiJson(json: any) {
     console.log('Processing MIDI JSON:', json);
     const jsonArray = convertArraysToObjectArrays(Object.values(json));
     let notesArray: [string, number][] = [];
-    const tempo = json.tracks[0][1].setTempo.microsecondsPerQuarter; // Tempo in microseconds per quarter note
+    let tempo = 0;
+
+    for (const track of jsonArray) {
+        const stack: any[] = [track];
+
+        while (stack.length > 0) {
+            const current = stack.pop();
+            if (current && typeof current === 'object') {
+                if (current.hasOwnProperty('setTempo')) {
+                    tempo = current.setTempo.microsecondsPerQuarter;
+                    break;
+                }
+                for (const key in current) {
+                    if (current[key] && typeof current[key] === 'object') {
+                        stack.push(current[key]);
+                    }
+                }
+            }
+        }
+        if (tempo > 0) {
+            break;
+        }
+    }
+
+    //const tempo = json.tracks[0][1].setTempo.microsecondsPerQuarter; // Tempo in microseconds per quarter note
     const bpm = 60000 / (tempo / 1000);
     const division = json.division; // Division value from MIDI file
     const msPerTick = 60000 / (bpm * division)
@@ -49,9 +73,40 @@ function processMidiJson(json: any) {
 
         if (currentObject.noteOn) {
             if (previousObject.noteOn) { // If the previous note is a noteOn, then it is a chord and only the delta of one note is necessary.
-                notesArray.push([String(currentObject.noteOn.noteNumber - 96), ((currentObject.delta) * msPerTick)]);
+                notesArray.push([String(currentObject.noteOn.noteNumber), ((currentObject.delta) * msPerTick)]);
             } else {
-                notesArray.push([String(currentObject.noteOn.noteNumber - 96), ((currentObject.delta + previousObject.delta) * msPerTick)]);
+                notesArray.push([String(currentObject.noteOn.noteNumber), ((currentObject.delta + previousObject.delta) * msPerTick)]);
+            }
+        }
+    }
+
+    for (let i = 0; i < notesArray.length; i++) {
+        const noteValue = notesArray[i][0];
+
+        switch (noteValue) {
+            case "98": {
+                notesArray[i][0] = "0";
+                break;
+            }
+            case "99": {
+                notesArray[i][0] = "1";
+                break;
+            }
+            case "100": {
+                notesArray[i][0] = "2";
+                break;
+            }
+            case "95": {
+                notesArray[i][0] = "3";
+                break;
+            }
+            case "96": {
+                notesArray[i][0] = "4";
+                break;
+            }
+            case "97": {
+                notesArray[i][0] = "5";
+                break;
             }
         }
     }
