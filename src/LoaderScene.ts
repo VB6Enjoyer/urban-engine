@@ -1,5 +1,3 @@
-// TODO Tutorial was on Pixi 6. Implementation of this in Pixi 7 differs due to the absence of a Loader, so it doesn't work unless I develop a new implementation.
-
 import { Assets, Graphics } from "pixi.js";
 import { SceneAbstract } from "./SceneAbstract";
 import { SceneManager } from "./SceneManager";
@@ -7,6 +5,7 @@ import { MenuScene } from "./MenuScene";
 import { manifest } from "./assets";
 
 export class LoaderScene extends SceneAbstract {
+
     public update(): void { }
 
     public bar: Graphics;
@@ -14,20 +13,31 @@ export class LoaderScene extends SceneAbstract {
     constructor() {
         super();
 
+        // ------------------------------------
+        // Initialization of global variables |
+        // ------------------------------------
         this.bar = new Graphics();
-        this.setBarPercent(0);
 
+        // ---------------------------
+        // Setup of global variables |
+        // ---------------------------
+        this.setBarPercent(0);
         this.bar.x = SceneManager.WIDTH * 0.5;
         this.bar.y = SceneManager.HEIGHT * 0.5;
-
         this.bar.pivot.x = this.bar.width / 2;
         this.bar.pivot.y = this.bar.height / 2;
 
+        // ---------------------------
+        // Addition of children      |
+        // ---------------------------
         this.addChild(this.bar);
 
         this.downloadAssets();
     }
 
+    // --------------------------------------------------
+    // Loading functions                                |
+    // --------------------------------------------------
     private async downloadAssets() {
         await Assets.init({ manifest: manifest });
 
@@ -71,7 +81,9 @@ export class LoaderScene extends SceneAbstract {
         this.bar.endFill();
     }
 
-    // No idea how to implement this into my code, honestly.
+    // --------------------------------------------------
+    // Scene-manipulation functions                              |
+    // --------------------------------------------------
     private onComplete() {
         SceneManager.changeScene(new MenuScene());
     }

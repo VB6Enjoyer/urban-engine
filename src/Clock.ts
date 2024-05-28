@@ -4,57 +4,76 @@ import { manifest } from "./assets";
 
 export class Clock extends Container {
 
-    twelve: Texture;
-    nine: Texture;
-    six: Texture;
-    three: Texture;
+    private twelve: Texture;
+    private nine: Texture;
+    private six: Texture;
+    private three: Texture;
 
     private clock: Sprite;
-    public timeText: Text;
     private canClick: Boolean;
+
+    public timeText: Text;
 
     constructor(twelve: Texture, nine: Texture, six: Texture, three: Texture) {
         super();
 
+        // ---------------------------
+        // Assets load               |
+        // ---------------------------
+        Assets.init({ manifest: manifest });
+        Assets.loadBundle("objects");
+
+        // ------------------------------------
+        // Initialization of global variables |
+        // ------------------------------------
         this.twelve = twelve;
         this.nine = nine;
         this.six = six;
         this.three = three;
 
-        Assets.init({ manifest: manifest });
-        Assets.loadBundle("objects");
-
         this.clock = Sprite.from(this.twelve);
 
+        this.timeText = new Text("12:25", { fontSize: 280, fill: 0x000000, fontFamily: "times-new-roman" });
+
+        this.canClick = true;
+
+        // ---------------------------
+        // Setup of global variables |
+        // ---------------------------
         this.clock.eventMode = "static";
         this.clock.cursor = "pointer";
         this.clock.on("pointerdown", this.onPointerDown, this);
         this.clock.on("pointerover", this.onPointerOver, this);
         this.clock.on("pointerout", this.onPointerOut, this);
-
         this.clock.hitArea = new Circle(this.clock.width / 2, this.clock.height / 2, this.clock.width / 2);
 
-        this.timeText = new Text("12:25", { fontSize: 280, fill: 0x000000, fontFamily: "times-new-roman" });
         this.timeText.anchor.set(0.5);
         this.timeText.position.set(this.clock.x + this.clock.width / 2, this.clock.y - 150);
         this.timeText.visible = false;
 
+        // ---------------------------
+        // Setup of events           |
+        // ---------------------------
         document.addEventListener("keydown", this.onKeyDown.bind(this));
         document.addEventListener("keyup", this.onKeyUp.bind(this));
 
-        this.canClick = true;
-
         sound.add("clock-ticking", "./audio/clock-ticking.mp3");
 
+        // ---------------------------
+        // Addition of children      |
+        // ---------------------------
         this.addChild(this.clock);
         this.addChild(this.timeText);
     }
 
-    // TODO Might want to optimize this
-    private setTime(currentTime: String) {
+    // --------------------------------------------------
+    // Interaction functions                            |
+    // --------------------------------------------------
+    private setTime(currentTime: String) { // TODO Needs optimization.
         if (this.canClick) {
             sound.play("clock-ticking");
 
+            // Check for current time and switch textures and animations accordingly.
             if (currentTime == "12:25") {
                 let frameIndex = 0;
 
@@ -122,19 +141,13 @@ export class Clock extends Container {
 
         this.canClick = false;
 
-        // Sets a cooldown of 5 seconds before being able to play another sound.
-        // TODO Bugs out if the keyboard is used and a key is kept pressed.
+        // Set a cooldown of 5 seconds before being able to play another sound.
         setTimeout(() => {
             this.canClick = true;
         }, 3000);
     }
 
-    private showText(currentTime: String) {
-        this.timeText.visible = true;
-        this.timeText.text = currentTime.toString();
-    }
-
-    //TODO Make it so that the mouse pointer disappears upon clicking the switch
+    //TODO Make it so that the mouse pointer disappears upon clicking the switch.
     private onPointerDown() {
         this.emit("clockPress");
         this.setTime(this.timeText.text);
@@ -158,4 +171,17 @@ export class Clock extends Container {
     private onKeyUp() {
         this.timeText.visible = false;
     }
+
+    // --------------------------------------------------
+    // Auxiliary functions                              |
+    // --------------------------------------------------
+    private showText(currentTime: String) {
+        this.timeText.visible = true;
+        this.timeText.text = currentTime.toString();
+    }
 }
+
+/* KNOWN BUGS:
+- If the player switches the time with the arrow keys and keeps them pressed, it'll cause it to bug out and the animation to be spammed.
+  Changing the eventMode property doesn't seem to fix it.
+*/

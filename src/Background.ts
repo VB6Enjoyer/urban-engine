@@ -33,9 +33,9 @@ export class Background extends Container {
         Assets.loadBundle("fonts");
         Assets.loadBundle("spritesheet");
 
-        // ---------------------------------
-        // Declaration of global variables |
-        // ---------------------------------
+        // ------------------------------------
+        // Initialization of global variables |
+        // ------------------------------------
         this.callback = callback;
         this.callback2 = callback2;
         this.files = [];

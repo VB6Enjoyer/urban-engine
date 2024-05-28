@@ -5,9 +5,8 @@ import { Tween } from "tweedle.js";
 
 export class HitKey extends Container implements IHitbox {
 
-    keyTexture: Texture;
-
     public key: Sprite;
+    public keyTexture: Texture;
     private physKey: PhysicsContainer;
 
     public missed: boolean;
@@ -15,27 +14,40 @@ export class HitKey extends Container implements IHitbox {
     constructor(keyTexture: Texture) {
         super();
 
+        // ---------------------------
+        // Assets load               |
+        // ---------------------------
         Assets.loadBundle("keyboard_inputs");
 
+        // ------------------------------------
+        // Initialization of global variables |
+        // ------------------------------------
         this.keyTexture = keyTexture;
+        this.key = new Sprite(keyTexture);
+        this.physKey = new PhysicsContainer();
 
         this.missed = false;
 
-        // Class extending from Container.
-        this.key = new Sprite(keyTexture);
-
+        // ---------------------------
+        // Setup of global variables |
+        // ---------------------------
         this.key.position.y = -120;
         this.key.position.x = screen.width / 2 - 2;
 
-        this.physKey = new PhysicsContainer();
         this.physKey.speed.x = 50;
         this.physKey.speed.y = 50;
         this.physKey.acceleration.y = 50;
 
+        // ---------------------------
+        // Addition of children      |
+        // ---------------------------
         this.addChild(this.physKey);
         this.physKey.addChild(this.key);
     }
 
+    // --------------------------------------------------
+    // Note-manipulation functions                      |
+    // --------------------------------------------------
     public moveNote() {
         new Tween(this.key)
             .to({ y: 1020 }, 2000)
@@ -43,6 +55,9 @@ export class HitKey extends Container implements IHitbox {
         this.key.position.y = -120;
     }
 
+    // --------------------------------------------------
+    // Getters                                          |
+    // --------------------------------------------------
     public getHitbox(): Rectangle {
         return this.physKey.getBounds();
     }

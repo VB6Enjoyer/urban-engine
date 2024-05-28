@@ -1,21 +1,18 @@
 import { parseArrayBuffer } from 'midi-json-parser';
 
-// Function to parse a MIDI file
 export function parseMidiFile(file: File): Promise<[string, number][]> {
     return new Promise<[string, number][]>((resolve, reject) => {
         const reader = new FileReader();
 
-        // Handle the file loading process
+        // Handle the file loading process.
         reader.onload = (event) => {
             if (event.target && event.target.result instanceof ArrayBuffer) {
                 const arrayBuffer = event.target.result;
 
-                // Parse the MIDI data into JSON using parseArrayBuffer
+                // Parse the MIDI data into JSON using parseArrayBuffer.
                 parseArrayBuffer(arrayBuffer).then((json) => {
-                    // json is the JSON representation of the MIDI file
                     console.log('Parsed MIDI JSON:', json);
 
-                    // Call a function to process the parsed MIDI JSON
                     const notesArray = processMidiJson(json);
                     resolve(notesArray);
                 }).catch((error) => {
@@ -28,22 +25,24 @@ export function parseMidiFile(file: File): Promise<[string, number][]> {
             }
         };
 
-        // Read the MIDI file as an ArrayBuffer using FileReader
         reader.readAsArrayBuffer(file);
     });
 }
 
-function processMidiJson(json: any) {
+function processMidiJson(json: any) { // json shouldn't be "any", but I couldn't find the correct type for this.
     console.log('Processing MIDI JSON:', json);
+
     const jsonArray = convertArraysToObjectArrays(Object.values(json));
     let notesArray: [string, number][] = [];
     let tempo = 0;
 
+    // Check for the position of the property that defines the MIDI's tempo within the json.
     for (const track of jsonArray) {
         const stack: any[] = [track];
 
         while (stack.length > 0) {
             const current = stack.pop();
+
             if (current && typeof current === 'object') {
                 if (current.hasOwnProperty('setTempo')) {
                     tempo = current.setTempo.microsecondsPerQuarter;
@@ -61,11 +60,9 @@ function processMidiJson(json: any) {
         }
     }
 
-    //const tempo = json.tracks[0][1].setTempo.microsecondsPerQuarter; // Tempo in microseconds per quarter note
-    const bpm = 60000 / (tempo / 1000);
-    const division = json.division; // Division value from MIDI file
+    const bpm = 60000 / (tempo / 1000); // Beats per minute.
+    const division = json.division; // Division value from MIDI file.
     const msPerTick = 60000 / (bpm * division)
-    console.log(msPerTick);
 
     for (let i = 0; i < jsonArray[2][1].length; i++) {
         const currentObject = jsonArray[2][1][i];
@@ -80,6 +77,7 @@ function processMidiJson(json: any) {
         }
     }
 
+    // Accommodate the note values so that they can be used with the code's implementation.
     for (let i = 0; i < notesArray.length; i++) {
         const noteValue = notesArray[i][0];
 
@@ -115,31 +113,14 @@ function processMidiJson(json: any) {
     return notesArray;
 }
 
-// Function to calculate the duration of a note in ticks
-/* function calculateNoteDuration(track: any[], currentIndex: number): number {
-    let durationTicks = 0;
-    let i = currentIndex;
-
-    // Start at the current note event and iterate until a noteOff event is found
-    while (i < track.length && !track[i].noteOff) {
-        durationTicks += track[i].delta; // Accumulate delta times
-        i++;
-    }
-
-    durationTicks += track[i].delta; // Include the delta time of the noteOff event
-    return durationTicks;
-} */
-
 function convertArraysToObjectArrays(obj: any): any {
     if (Array.isArray(obj)) {
-        // If it's an array, recursively convert its elements
-        return obj.map(convertArraysToObjectArrays);
+        return obj.map(convertArraysToObjectArrays); // If it's an array, recursively convert its elements.
     } else if (typeof obj === 'object') {
-        // If it's an object, recursively convert its properties
         for (const key in obj) {
-            obj[key] = convertArraysToObjectArrays(obj[key]);
+            obj[key] = convertArraysToObjectArrays(obj[key]); // If it's an object, recursively convert its properties.
         }
     }
-    // If it's neither an array nor an object, return it as is
-    return obj;
+
+    return obj; // If it's neither an array nor an object, return it as is.
 }

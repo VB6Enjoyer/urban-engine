@@ -17,8 +17,10 @@ export class MenuScene extends SceneAbstract {
 
     constructor() {
         super();
+        // ---------------------------
+        // Assets load               |
+        // ---------------------------
         Assets.init({ manifest: manifest });
-
         Assets.loadBundle("backgrounds");
         Assets.loadBundle("characters");
         Assets.loadBundle("objects");
@@ -27,17 +29,28 @@ export class MenuScene extends SceneAbstract {
         Assets.loadBundle("fx");
         Assets.loadBundle("keyboard_inputs");
 
+        // ------------------------------------
+        // Initialization of global variables |
+        // ------------------------------------
         this.background = new Background(this.turnLightsOnOff.bind(this), this.play.bind(this));
         this.scene = new Scene();
 
+        // ---------------------------
+        // Setup of global variables |
+        // ---------------------------
         this.scene.scale.set(0.85);
         this.scene.position.set(500, 450);
 
+        // ---------------------------
+        // Addition of children      |
+        // ---------------------------
         this.addChild(this.background);
         this.addChild(this.scene);
     }
 
-    // TODO Need to make it so that parts of the UI don't get shadowed.
+    // --------------------------------------------------
+    // Interaction functions                            |
+    // --------------------------------------------------
     private turnLightsOnOff(): void {
         if (this.background.lightsOn) {
             const darkness = new Graphics();
@@ -55,57 +68,35 @@ export class MenuScene extends SceneAbstract {
         }
     }
 
-    private async decodeAudioFile(oggFile: Blob): Promise<AudioBuffer> {
-        return new Promise<AudioBuffer>((resolve, reject) => {
-            const reader = new FileReader();
-
-            // Define the onload function for the FileReader
-            reader.onload = async () => {
-                try {
-                    const audioContext = new AudioContext();
-                    const audioData = reader.result as ArrayBuffer;
-                    const audioBuffer = await audioContext.decodeAudioData(audioData);
-                    resolve(audioBuffer);
-                } catch (error) {
-                    reject(error);
-                }
-            };
-
-            // Define the onerror function for the FileReader
-            reader.onerror = (_event) => {
-                reject(reader.error);
-            };
-
-            // Read the .ogg file as ArrayBuffer
-            reader.readAsArrayBuffer(oggFile);
-        });
-    }
-
-    // TODO Clean up stuff outside of the screen.
+    // --------------------------------------------------
+    // Gameplay functions                               |
+    // --------------------------------------------------
+    // TODO Clean up stuff outside of the screen for optimization.
     private async play(): Promise<void> {
-        if (this.background.files) {
-            this.scene.buckWithAmp.canClick = false;
+        if (this.background.files) { // Have the necessary files been loaded?
+            this.scene.buckWithAmp.canClick = false; // Avoid having the player click Buck and play a sound on top of the gameplay.
+
             if (!this.background.lightsOn) {
-                this.turnLightsOnOff();
+                this.turnLightsOnOff(); // Turn the lights on in case the player had turned them off.
             }
+
             this.scene.moveUI();
 
             const midiFile = this.background.files[0];
             const oggFile = this.background.files[1];
+
             try {
                 const parsedMidiFile = await parseMidiFile(midiFile);
-
-                // Decode the audio file
                 const audioBuffer = await this.decodeAudioFile(oggFile);
 
                 setTimeout(() => {
-                    // Proceed with the rest of the code after audio decoding is complete
                     const tickerScene = new TickerScene(parsedMidiFile);
                     tickerScene.startScheduling();
+
                     sound.add("song", audioBuffer);
 
                     // TODO Find a better implementation that doesn't require using a specific timeout for the song to play.
-                    // This current one also probably difficults pausing the song and all. FUCK.
+                    // This current one also probably difficults implementing functions such as pausing the song. Fuck.
                     setTimeout(() => {
                         sound.play("song");
                     }, 1300);
@@ -121,4 +112,38 @@ export class MenuScene extends SceneAbstract {
             }
         }
     }
+
+    // --------------------------------------------------
+    // Auxiliary functions                              |
+    // --------------------------------------------------
+    private async decodeAudioFile(oggFile: Blob): Promise<AudioBuffer> {
+        return new Promise<AudioBuffer>((resolve, reject) => {
+            const reader = new FileReader();
+
+            // Define the onload function for the FileReader.
+            reader.onload = async () => {
+                try {
+                    const audioContext = new AudioContext();
+                    const audioData = reader.result as ArrayBuffer;
+                    const audioBuffer = await audioContext.decodeAudioData(audioData);
+                    resolve(audioBuffer);
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            // Define the onerror function for the FileReader.
+            reader.onerror = (_event) => {
+                reject(reader.error);
+            };
+
+            reader.readAsArrayBuffer(oggFile);
+        });
+    }
 }
+
+/* KNOWN BUGS:
+- While not necessarily a bug, turning the lights off shadows the entire screen, including text. This should be fixed.
+
+- While not necessarily a bug, the transition to gameplay can take a few seconds to load if the note array is too large. This has to be optimized.
+*/

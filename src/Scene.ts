@@ -5,69 +5,73 @@ import { RoundButton } from "./RoundButton";
 export class Scene extends Container {
 
     public recorderOn = false;
-    private panel: NineSlicePlane;
+
     public buckWithAmp: BuckWithAmp;
-
+    private panel: NineSlicePlane;
     private recorderContainer: Container;
-
-
-
-
-
 
     constructor() {
         super();
 
-        // Class extending from Container.
-        this.buckWithAmp = new BuckWithAmp();
-        this.buckWithAmp.y = 20;
-        this.addChild(this.buckWithAmp);
-
-
-
-        this.recorderContainer = new Container();
-
-
+        // ---------------------------
+        // Assets load               |
+        // ---------------------------
         Assets.loadBundle("ui");
         Assets.loadBundle("fx");
 
-
-
-        // Text
-
-
-
-
+        // ------------------------------------
+        // Initialization of global variables |
+        // ------------------------------------
+        this.buckWithAmp = new BuckWithAmp();
+        this.recorderContainer = new Container();
         this.panel = new NineSlicePlane(Texture.from("Radio_off"), 50, 50, 50, 50);
+
+        // --------------------------------
+        // Declaration of local variables |
+        // --------------------------------
+        const onOff = new Text("On/Off", { fontSize: 20, fill: 0x000000, fontFamily: "verdana" });
+        const rec = new Text("Rec.", { fontSize: 23, fill: 0x000000, fontFamily: "verdana" })
+
+        const recorderButton = new RoundButton();
+
+        // ---------------------------
+        // Setup of global variables |
+        // ---------------------------
+        this.buckWithAmp.y = 20;
+
         this.panel.width = 480;
         this.panel.height = 380;
         this.panel.position.set(-580, 285);
 
-        this.recorderContainer.addChild(this.panel);
-
-        const onOff = new Text("On/Off", { fontSize: 20, fill: 0x000000, fontFamily: "verdana" })
+        // ---------------------------
+        // Setup of local variables  |
+        // ---------------------------
         onOff.position.set(-257, 593);
-        this.recorderContainer.addChild(onOff);
 
-        const rec = new Text("Rec.", { fontSize: 23, fill: 0x000000, fontFamily: "verdana" })
-        rec.position.set(-350, 590);
-        this.recorderContainer.addChild(rec);
-
-        const recorderButton = new RoundButton();
         recorderButton.pivot.set(this.panel.x);
         recorderButton.position.set(-740, 26);
 
         recorderButton.eventMode = "static";
         recorderButton.on("pointerdown", this.recorderOnOff, this);
 
+        rec.position.set(-350, 590);
 
+        // ---------------------------
+        // Addition of children      |
+        // ---------------------------
+        this.addChild(this.buckWithAmp);
 
+        this.recorderContainer.addChild(this.panel);
+        this.recorderContainer.addChild(onOff);
+        this.recorderContainer.addChild(rec);
         this.recorderContainer.addChild(recorderButton);
-        this.addChild(this.recorderContainer);
 
+        this.addChild(this.recorderContainer);
     }
 
-    // Would it be better to load both textures and make the other invisible on click?
+    // --------------------------------------------------
+    // Interaction functions                            |
+    // --------------------------------------------------
     private recorderOnOff() {
         if (this.recorderOn) {
             this.panel.texture = Texture.from("Radio_off");
@@ -78,49 +82,44 @@ export class Scene extends Container {
         }
     }
 
+    // --------------------------------------------------
+    // Scene-manipulation functions                     |
+    // --------------------------------------------------
     public moveUI() {
-        let startTime = performance.now(); // Get the current timestamp
-        const duration = 2000; // Duration of the animation in milliseconds
-
+        let startTime = performance.now(); // Get the current timestamp.
+        const duration = 2000; // Duration of the animation in milliseconds.
 
         const animate = (currentTime: number) => {
             const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1)
+            const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1).
 
             if (progress < 1) {
-                // Update the position based on the progress of the animation
+                this.recorderContainer.y = (Math.round(progress * screen.height)); // Update the position based on the progress of the animation
 
-                this.recorderContainer.y = (Math.round(progress * screen.height));
-
-
-                // Request the next animation frame
-                requestAnimationFrame(animate);
+                requestAnimationFrame(animate); // Request the next animation frame
             }
         }
 
-        // Start the animation
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animate); // Start the animation
+
         this.moveBuck();
     }
 
     private moveBuck() {
-        let startTime = performance.now(); // Get the current timestamp
-        const duration = 2000; // Duration of the animation in milliseconds
+        let startTime = performance.now(); // Get the current timestamp.
+        const duration = 2000; // Duration of the animation in milliseconds.
 
         const animate = (currentTime: number) => {
             const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1)
+            const progress = Math.min(elapsedTime / duration, 1); // Calculate animation progress (0 to 1).
 
             if (progress < 1) {
-                // Update the position based on the progress of the animation
-                this.buckWithAmp.x = -(Math.round(progress * screen.width / 4));
+                this.buckWithAmp.x = -(Math.round(progress * screen.width / 4)); // Update the position based on the progress of the animation-
 
-                // Request the next animation frame
-                requestAnimationFrame(animate);
+                requestAnimationFrame(animate); // Request the next animation frame-
             }
         }
 
-        // Start the animation
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animate); // Start the animation.
     }
 }

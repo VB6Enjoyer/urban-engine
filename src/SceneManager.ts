@@ -1,5 +1,3 @@
-// TODO Well, this just looks like I remade index.ts and turned it into a class. Should prolly fix whatever's wrong with this.
-
 import { Application, Ticker } from "pixi.js";
 import { Keyboard } from "./Keyboard";
 import { SceneAbstract } from "./SceneAbstract";
@@ -14,7 +12,7 @@ export namespace SceneManager {
     export const HEIGHT = 1020;
 
     export function initialize() {
-        if (app != undefined) {
+        if (app != undefined) { // Does app already exist?
             console.error("App can't be initialized twice.");
             return;
         }

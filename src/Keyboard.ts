@@ -15,11 +15,12 @@ export class Keyboard {
         }
 
         Keyboard.initialized = true;
+
         document.addEventListener("keydown", Keyboard.onKeyDown);
         document.addEventListener("keyup", Keyboard.onKeyUp);
     }
 
-    // Checks current state of a key
+    // Check current state of a key.
     private static onKeyDown(key: KeyboardEvent) {
         Keyboard.down.emit(key.code);
         Keyboard.state.set(key.code, true);

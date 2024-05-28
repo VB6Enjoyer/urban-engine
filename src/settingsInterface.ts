@@ -1,3 +1,5 @@
+// Currently unused.
+
 export interface ControlsConfig {
     key1: string;
     key2: string;
