@@ -57,21 +57,6 @@ export const manifest: AssetsManifest = {
         },
 
         {
-            name: "keyboard_inputs",
-            assets:
-            {
-                W_Key: "./ui/keyboard_mouse/white/T_W_Key_White.png",
-                E_Key: "./ui/keyboard_mouse/white/T_E_Key_White.png",
-                S_Key: "./ui/keyboard_mouse/white/T_S_Key_White.png",
-                D_Key: "./ui/keyboard_mouse/white/T_D_Key_White.png",
-                F_Key: "./ui/keyboard_mouse/white/T_F_Key_White.png",
-                J_Key: "./ui/keyboard_mouse/white/T_J_Key_White.png",
-                K_Key: "./ui/keyboard_mouse/white/T_K_Key_White.png",
-                L_Key: "./ui/keyboard_mouse/white/T_L_Key_White.png",
-            }
-        },
-
-        {
             name: "fx",
             assets:
             {
@@ -100,3 +85,8 @@ export const manifest: AssetsManifest = {
         }
     ]
 }
+
+/* KNOWN Bugs
+ - PixelifySans won't load because there seems to be no parser for it.
+   [Assets] https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap could not be loaded as we don't know how to parse it, ensure the correct parser has been added
+*/

@@ -120,23 +120,47 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Alt_Key_White.png": {
+    "fx/fire.png": {
       "frame": {
         "x": 2,
         "y": 2194,
-        "w": 120,
-        "h": 74
+        "w": 108,
+        "h": 50
       },
       "rotated": true,
       "trimmed": true,
       "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
+        "x": 150,
+        "y": 1,
+        "w": 108,
+        "h": 50
       },
       "sourceSize": {
-        "w": 128,
+        "w": 258,
+        "h": 51
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "objects/amplifier.png": {
+      "frame": {
+        "x": 56,
+        "y": 2194,
+        "w": 101,
+        "h": 128
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 101,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 101,
         "h": 128
       },
       "pivot": {
@@ -144,192 +168,48 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_BackSpace_Key_White.png": {
+    "objects/guitar.png": {
       "frame": {
-        "x": 80,
+        "x": 188,
         "y": 2194,
-        "w": 120,
-        "h": 74
+        "w": 96,
+        "h": 301
       },
       "rotated": true,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
+        "x": 0,
+        "y": 0,
+        "w": 96,
+        "h": 301
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 96,
+        "h": 301
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Backspace_Alt_Key_White.png": {
+    "fx/particle.png": {
       "frame": {
-        "x": 158,
+        "x": 493,
         "y": 2194,
-        "w": 120,
-        "h": 74
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_CapsLock_Key_White.png": {
-      "frame": {
-        "x": 236,
-        "y": 2194,
-        "w": 120,
-        "h": 74
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Crtl_Key_White.png": {
-      "frame": {
-        "x": 314,
-        "y": 2194,
-        "w": 120,
-        "h": 74
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Shift_Key_White.png": {
-      "frame": {
-        "x": 392,
-        "y": 2194,
-        "w": 120,
-        "h": 74
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Tab_Key_White.png": {
-      "frame": {
-        "x": 470,
-        "y": 2194,
-        "w": 120,
-        "h": 74
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 8,
-        "y": 32,
-        "w": 120,
-        "h": 74
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Cursor_Key_White.png": {
-      "frame": {
-        "x": 548,
-        "y": 2194,
-        "w": 116,
-        "h": 116
+        "w": 44,
+        "h": 44
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 12,
-        "y": 12,
-        "w": 116,
-        "h": 116
+        "x": 0,
+        "y": 0,
+        "w": 44,
+        "h": 44
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_XY_Key_White.png": {
-      "frame": {
-        "x": 668,
-        "y": 2194,
-        "w": 112,
-        "h": 124
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 8,
-        "y": 4,
-        "w": 112,
-        "h": 124
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 44,
+        "h": 44
       },
       "pivot": {
         "x": 0.5,
@@ -360,126 +240,6 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Enter_Alt_Key_White.png": {
-      "frame": {
-        "x": 2,
-        "y": 3878,
-        "w": 107,
-        "h": 107
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 107,
-        "h": 107
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Enter_Key_White.png": {
-      "frame": {
-        "x": 113,
-        "y": 3878,
-        "w": 107,
-        "h": 107
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 107,
-        "h": 107
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_0_Key_White.png": {
-      "frame": {
-        "x": 224,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_1_Key_White.png": {
-      "frame": {
-        "x": 332,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_2_Key_White.png": {
-      "frame": {
-        "x": 440,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "background/room.jpeg": {
       "frame": {
         "x": 518,
@@ -498,126 +258,6 @@
       "sourceSize": {
         "w": 768,
         "h": 512
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_3_Key_White.png": {
-      "frame": {
-        "x": 548,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_4_Key_White.png": {
-      "frame": {
-        "x": 656,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_5_Key_White.png": {
-      "frame": {
-        "x": 764,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_6_Key_White.png": {
-      "frame": {
-        "x": 872,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_7_Key_White.png": {
-      "frame": {
-        "x": 980,
-        "y": 3878,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
       },
       "pivot": {
         "x": 0.5,
@@ -648,126 +288,6 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_8_Key_White.png": {
-      "frame": {
-        "x": 796,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_9_Key_White.png": {
-      "frame": {
-        "x": 904,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_A_Key_White.png": {
-      "frame": {
-        "x": 1012,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Asterisk_Key_White.png": {
-      "frame": {
-        "x": 1120,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_B_Key_White.png": {
-      "frame": {
-        "x": 1228,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "fx/notes1.png": {
       "frame": {
         "x": 1034,
@@ -792,192 +312,24 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Brackets_L_Key_White.png": {
+    "ui/ui-player.png": {
       "frame": {
         "x": 1034,
         "y": 3764,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_X_Key_White.png": {
-      "frame": {
-        "x": 1088,
-        "y": 3872,
-        "w": 124,
-        "h": 128
+        "w": 162,
+        "h": 270
       },
       "rotated": true,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 4,
+        "x": 0,
         "y": 0,
-        "w": 124,
-        "h": 128
+        "w": 162,
+        "h": 270
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Brackets_R_Key_White.png": {
-      "frame": {
-        "x": 1142,
-        "y": 3764,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_C_Key_White.png": {
-      "frame": {
-        "x": 1250,
-        "y": 3764,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Y_Key_White.png": {
-      "frame": {
-        "x": 1220,
-        "y": 3872,
-        "w": 48,
-        "h": 124
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 40,
-        "y": 4,
-        "w": 48,
-        "h": 124
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_D_Key_White.png": {
-      "frame": {
-        "x": 1272,
-        "y": 3872,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Del_Key_White.png": {
-      "frame": {
-        "x": 1358,
-        "y": 3764,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Down_Key_White.png": {
-      "frame": {
-        "x": 1380,
-        "y": 3872,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 162,
+        "h": 270
       },
       "pivot": {
         "x": 0.5,
@@ -1008,154 +360,10 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_E_Key_White.png": {
-      "frame": {
-        "x": 1336,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_End_Key_White.png": {
-      "frame": {
-        "x": 1444,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Esc_Key_White.png": {
-      "frame": {
-        "x": 1552,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "objects/amplifier.png": {
-      "frame": {
-        "x": 1243,
-        "y": 2916,
-        "w": 101,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 101,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 101,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Left_Key_White.png": {
-      "frame": {
-        "x": 1348,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Middle_Key_White.png": {
-      "frame": {
-        "x": 1428,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "character/buck-hd-ec.png": {
       "frame": {
         "x": 1460,
-        "y": 3048,
+        "y": 2916,
         "w": 352,
         "h": 594
       },
@@ -1177,102 +385,6 @@
       }
     },
     "character/buck-hd-eh-s.png": {
-      "frame": {
-        "x": 1508,
-        "y": 3646,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hd-eh.png": {
-      "frame": {
-        "x": 2106,
-        "y": 3646,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Right_Key_White.png": {
-      "frame": {
-        "x": 1508,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Scroll_Down_Key_Dark_Key_White.png": {
-      "frame": {
-        "x": 1588,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hd-eo.png": {
       "frame": {
         "x": 1599,
         "y": 2318,
@@ -1296,1042 +408,10 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Mouse_Scroll_Key_Dark_Key_White.png": {
-      "frame": {
-        "x": 1668,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Scroll_Up_Key_Dark_Key_White.png": {
-      "frame": {
-        "x": 1748,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hd-ey-s.png": {
-      "frame": {
-        "x": 1816,
-        "y": 3048,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Mouse_Simple_Key_White.png": {
-      "frame": {
-        "x": 1828,
-        "y": 2916,
-        "w": 76,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 28,
-        "y": 0,
-        "w": 76,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Enter_Tall_Key_White.png": {
-      "frame": {
-        "x": 1908,
-        "y": 2916,
-        "w": 74,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 32,
-        "y": 0,
-        "w": 74,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-ec-s.png": {
-      "frame": {
-        "x": 1955,
-        "y": 2318,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Plus_Tall_Key_White.png": {
-      "frame": {
-        "x": 1986,
-        "y": 2916,
-        "w": 74,
-        "h": 128
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 32,
-        "y": 0,
-        "w": 74,
-        "h": 128
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Shift_Super_Wide_Key_White.png": {
-      "frame": {
-        "x": 2064,
-        "y": 2916,
-        "w": 128,
-        "h": 68
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 32,
-        "w": 128,
-        "h": 68
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Space_Key_White.png": {
-      "frame": {
-        "x": 2136,
-        "y": 2916,
-        "w": 128,
-        "h": 68
-      },
-      "rotated": true,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 32,
-        "w": 128,
-        "h": 68
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-ec.png": {
-      "frame": {
-        "x": 2172,
-        "y": 3048,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F10_Key_White.png": {
-      "frame": {
-        "x": 1660,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F11_Key_White.png": {
-      "frame": {
-        "x": 1768,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F12_Key_White.png": {
-      "frame": {
-        "x": 1876,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F1_Key_White.png": {
-      "frame": {
-        "x": 1984,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F2_Key_White.png": {
-      "frame": {
-        "x": 2092,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F3_Key_White.png": {
-      "frame": {
-        "x": 2200,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F4_Key_White.png": {
-      "frame": {
-        "x": 2308,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F5_Key_White.png": {
-      "frame": {
-        "x": 2208,
-        "y": 2916,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-eh-s.png": {
-      "frame": {
-        "x": 2311,
-        "y": 2318,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F6_Key_White.png": {
-      "frame": {
-        "x": 2416,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F7_Key_White.png": {
-      "frame": {
-        "x": 2524,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F8_Key_White.png": {
-      "frame": {
-        "x": 2632,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F9_Key_White.png": {
-      "frame": {
-        "x": 2740,
-        "y": 2194,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-eh.png": {
-      "frame": {
-        "x": 2848,
-        "y": 2194,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/ui-player.png": {
-      "frame": {
-        "x": 2667,
-        "y": 2302,
-        "w": 162,
-        "h": 270
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 162,
-        "h": 270
-      },
-      "sourceSize": {
-        "w": 162,
-        "h": 270
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_F_Key_White.png": {
-      "frame": {
-        "x": 2316,
-        "y": 2916,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_G_Key_White.png": {
-      "frame": {
-        "x": 2424,
-        "y": 2916,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-eo-s.png": {
-      "frame": {
-        "x": 2528,
-        "y": 3024,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_H_Key_White.png": {
-      "frame": {
-        "x": 2532,
-        "y": 2916,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Home_Key_White.png": {
-      "frame": {
-        "x": 2640,
-        "y": 2916,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "objects/guitar.png": {
-      "frame": {
-        "x": 2748,
-        "y": 2576,
-        "w": 96,
-        "h": 301
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 96,
-        "h": 301
-      },
-      "sourceSize": {
-        "w": 96,
-        "h": 301
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_I_Key_White.png": {
-      "frame": {
-        "x": 2848,
-        "y": 2792,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Ins_Key_White.png": {
-      "frame": {
-        "x": 2748,
-        "y": 2900,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_J_Key_White.png": {
-      "frame": {
-        "x": 2856,
-        "y": 2900,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_K_Key_White.png": {
-      "frame": {
-        "x": 2956,
-        "y": 2792,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-eo.png": {
-      "frame": {
-        "x": 2704,
-        "y": 3622,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "objects/switch-off.png": {
-      "frame": {
-        "x": 2884,
-        "y": 3008,
-        "w": 346,
-        "h": 552
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 346,
-        "h": 552
-      },
-      "sourceSize": {
-        "w": 346,
-        "h": 552
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Keyboard_R_Key_White-1.png": {
-      "frame": {
-        "x": 2964,
-        "y": 2900,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Keyboard_R_Key_White.png": {
-      "frame": {
-        "x": 3064,
-        "y": 2792,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_L_Key_White.png": {
-      "frame": {
-        "x": 3072,
-        "y": 2900,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Left_Key_White.png": {
-      "frame": {
-        "x": 3172,
-        "y": 2792,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_M_Key_White.png": {
-      "frame": {
-        "x": 3180,
-        "y": 2900,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "objects/switch-on.png": {
-      "frame": {
-        "x": 3280,
-        "y": 2318,
-        "w": 346,
-        "h": 552
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 346,
-        "h": 552
-      },
-      "sourceSize": {
-        "w": 346,
-        "h": 552
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "ui/radio-off.png": {
       "frame": {
-        "x": 3630,
-        "y": 2318,
+        "x": 1460,
+        "y": 3514,
         "w": 444,
         "h": 324
       },
@@ -2354,8 +434,8 @@
     },
     "ui/radio.png": {
       "frame": {
-        "x": 3630,
-        "y": 2766,
+        "x": 1788,
+        "y": 3514,
         "w": 444,
         "h": 324
       },
@@ -2376,624 +456,264 @@
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Minus_Key_White.png": {
+    "character/buck-hd-eh.png": {
       "frame": {
-        "x": 3302,
-        "y": 2874,
-        "w": 104,
-        "h": 104
+        "x": 1816,
+        "y": 2916,
+        "w": 352,
+        "h": 594
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_N_Key_White.png": {
+    "character/buck-hd-eo.png": {
       "frame": {
-        "x": 3410,
-        "y": 2874,
-        "w": 104,
-        "h": 104
+        "x": 2116,
+        "y": 2318,
+        "w": 352,
+        "h": 594
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_NumLock_Key_White.png": {
+    "character/buck-hd-ey-s.png": {
       "frame": {
-        "x": 3518,
-        "y": 2874,
-        "w": 104,
-        "h": 104
+        "x": 2472,
+        "y": 2318,
+        "w": 352,
+        "h": 594
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_O_Key_White.png": {
+    "character/buck-hu-ec-s.png": {
       "frame": {
-        "x": 3302,
-        "y": 2982,
-        "w": 104,
-        "h": 104
+        "x": 2828,
+        "y": 2194,
+        "w": 352,
+        "h": 594
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_P_Key_White.png": {
+    "character/buck-hu-ec.png": {
       "frame": {
-        "x": 3410,
-        "y": 2982,
-        "w": 104,
-        "h": 104
+        "x": 2828,
+        "y": 2792,
+        "w": 352,
+        "h": 594
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_PageDown_Key_White.png": {
+    "character/buck-hu-eh-s.png": {
       "frame": {
-        "x": 3518,
-        "y": 2982,
-        "w": 104,
-        "h": 104
+        "x": 2828,
+        "y": 3390,
+        "w": 352,
+        "h": 594
       },
       "rotated": false,
-      "trimmed": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_PageUp_Key_White.png": {
+    "character/buck-hu-eh.png": {
       "frame": {
-        "x": 3302,
-        "y": 3090,
-        "w": 104,
-        "h": 104
+        "x": 2172,
+        "y": 2916,
+        "w": 352,
+        "h": 594
       },
-      "rotated": false,
-      "trimmed": true,
+      "rotated": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Plus_Key_White.png": {
+    "character/buck-hu-eo-s.png": {
       "frame": {
-        "x": 3410,
-        "y": 3090,
-        "w": 104,
-        "h": 104
+        "x": 2172,
+        "y": 3272,
+        "w": 352,
+        "h": 594
       },
-      "rotated": false,
-      "trimmed": true,
+      "rotated": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_PrtScrn_Key_White.png": {
+    "character/buck-hu-eo.png": {
       "frame": {
-        "x": 3518,
-        "y": 3090,
-        "w": 104,
-        "h": 104
+        "x": 2116,
+        "y": 3628,
+        "w": 352,
+        "h": 594
       },
-      "rotated": false,
-      "trimmed": true,
+      "rotated": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 352,
+        "h": 594
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Q_Key_White.png": {
+    "objects/switch-off.png": {
       "frame": {
-        "x": 3302,
-        "y": 3198,
-        "w": 104,
-        "h": 104
+        "x": 3184,
+        "y": 2318,
+        "w": 346,
+        "h": 552
       },
-      "rotated": false,
-      "trimmed": true,
+      "rotated": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 346,
+        "h": 552
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 346,
+        "h": 552
       },
       "pivot": {
         "x": 0.5,
         "y": 0.5
       }
     },
-    "ui/keyboard_mouse/white/T_Question_Mark_Key_White.png": {
+    "objects/switch-on.png": {
       "frame": {
-        "x": 3410,
-        "y": 3198,
-        "w": 104,
-        "h": 104
+        "x": 3184,
+        "y": 2668,
+        "w": 346,
+        "h": 552
       },
-      "rotated": false,
-      "trimmed": true,
+      "rotated": true,
+      "trimmed": false,
       "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
+        "x": 0,
+        "y": 0,
+        "w": 346,
+        "h": 552
       },
       "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Quotation_Key_White.png": {
-      "frame": {
-        "x": 3518,
-        "y": 3198,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_R_Key_White.png": {
-      "frame": {
-        "x": 3234,
-        "y": 3306,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Right_Key_White.png": {
-      "frame": {
-        "x": 3234,
-        "y": 3414,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_S_Key_White.png": {
-      "frame": {
-        "x": 3626,
-        "y": 3214,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Semicolon_Key_White.png": {
-      "frame": {
-        "x": 3734,
-        "y": 3214,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Slash_Key_White.png": {
-      "frame": {
-        "x": 3842,
-        "y": 3214,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_T_Key_White.png": {
-      "frame": {
-        "x": 3842,
-        "y": 3322,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Tilde_Key_White.png": {
-      "frame": {
-        "x": 3342,
-        "y": 3306,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_U_Key_White.png": {
-      "frame": {
-        "x": 3450,
-        "y": 3306,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Up_Key_White.png": {
-      "frame": {
-        "x": 3558,
-        "y": 3322,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_V_Key_White.png": {
-      "frame": {
-        "x": 3666,
-        "y": 3322,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_W_Key_White.png": {
-      "frame": {
-        "x": 3666,
-        "y": 3430,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_X_Key_White.png": {
-      "frame": {
-        "x": 3666,
-        "y": 3538,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Y_Key_White.png": {
-      "frame": {
-        "x": 3666,
-        "y": 3646,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/keyboard_mouse/white/T_Z_Key_White.png": {
-      "frame": {
-        "x": 3342,
-        "y": 3414,
-        "w": 104,
-        "h": 104
-      },
-      "rotated": false,
-      "trimmed": true,
-      "spriteSourceSize": {
-        "x": 16,
-        "y": 16,
-        "w": 104,
-        "h": 104
-      },
-      "sourceSize": {
-        "w": 128,
-        "h": 128
+        "w": 346,
+        "h": 552
       },
       "pivot": {
         "x": 0.5,
@@ -3004,11 +724,11 @@
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",
-    "image": "textures.png",
+    "image": "textures-0.png",
     "format": "RGBA8888",
     "size": {
       "w": 3992,
-      "h": 4000
+      "h": 3986
     },
     "scale": 1
   }

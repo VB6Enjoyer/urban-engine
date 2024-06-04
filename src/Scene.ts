@@ -1,4 +1,4 @@
-import { Assets, Container, Texture, Text, NineSlicePlane } from "pixi.js";
+import { Container, Texture, Text, NineSlicePlane } from "pixi.js";
 import { BuckWithAmp } from "./BuckWithAmp";
 import { RoundButton } from "./RoundButton";
 
@@ -12,12 +12,6 @@ export class Scene extends Container {
 
     constructor() {
         super();
-
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.loadBundle("ui");
-        Assets.loadBundle("fx");
 
         // ------------------------------------
         // Initialization of global variables |

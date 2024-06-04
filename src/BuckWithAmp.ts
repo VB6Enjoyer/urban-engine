@@ -1,5 +1,4 @@
-import { AnimatedSprite, Assets, Container, Sprite, Texture } from "pixi.js";
-import { manifest } from "./assets";
+import { AnimatedSprite, Container, Sprite, Texture } from "pixi.js";
 import { sound } from "@pixi/sound";
 import { StateAnimation } from "./StateAnimation";
 
@@ -11,14 +10,6 @@ export class BuckWithAmp extends Container {
 
     constructor() {
         super();
-
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.init({ manifest: manifest });
-        Assets.loadBundle("characters");
-        Assets.loadBundle("objects");
-        Assets.loadBundle("fx");
 
         // ------------------------------------
         // Initialization of global variables |

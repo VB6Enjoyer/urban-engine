@@ -1,6 +1,5 @@
-import { Assets, Container, Texture, Text, Circle, Sprite } from "pixi.js";
+import { Container, Texture, Text, Circle, Sprite } from "pixi.js";
 import { sound } from "@pixi/sound";
-import { manifest } from "./assets";
 
 export class Clock extends Container {
 
@@ -16,12 +15,6 @@ export class Clock extends Container {
 
     constructor(twelve: Texture, nine: Texture, six: Texture, three: Texture) {
         super();
-
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.init({ manifest: manifest });
-        Assets.loadBundle("objects");
 
         // ------------------------------------
         // Initialization of global variables |
@@ -184,4 +177,6 @@ export class Clock extends Container {
 /* KNOWN BUGS:
 - If the player switches the time with the arrow keys and keeps them pressed, it'll cause it to bug out and the animation to be spammed.
   Changing the eventMode property doesn't seem to fix it.
+
+- Switching the time with the keyboard won't change the room's texture.
 */

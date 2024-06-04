@@ -124,3 +124,9 @@ function convertArraysToObjectArrays(obj: any): any {
 
     return obj; // If it's neither an array nor an object, return it as is.
 }
+
+/* KNOWN Bugs:
+- MIDI notes that don't have a "0" duration value WILL cause desynchronization due to how the note delays are calculated.
+
+- Changes in tempo in a .midi aren't registered by the parser, which will cause desynchronization if a song has tempo changes.
+*/

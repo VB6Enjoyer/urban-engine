@@ -1,6 +1,5 @@
-import { Assets, Container, Rectangle, Sprite, Texture, Text } from "pixi.js";
+import { Container, Rectangle, Sprite, Texture, Text } from "pixi.js";
 import { sound } from "@pixi/sound";
-import { manifest } from "./assets";
 
 export class ElectricSwitch extends Container {
 
@@ -14,13 +13,6 @@ export class ElectricSwitch extends Container {
 
     constructor(switchOn: Texture, switchOff: Texture) {
         super();
-
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.init({ manifest: manifest });
-        Assets.loadBundle("objects");
-        Assets.loadBundle("spreadsheet");
 
         // ------------------------------------
         // Initialization of global variables |

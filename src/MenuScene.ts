@@ -1,6 +1,5 @@
-import { Assets, Graphics, Ticker } from "pixi.js";
+import { Graphics, Ticker } from "pixi.js";
 import { Background } from "./Background";
-import { manifest } from "./assets";
 import { Scene } from "./Scene";
 import { TickerScene } from "./TickerScene";
 import { Group } from "tweedle.js";
@@ -17,17 +16,6 @@ export class MenuScene extends SceneAbstract {
 
     constructor() {
         super();
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.init({ manifest: manifest });
-        Assets.loadBundle("backgrounds");
-        Assets.loadBundle("characters");
-        Assets.loadBundle("objects");
-        Assets.loadBundle("spritesheet");
-        Assets.loadBundle("ui");
-        Assets.loadBundle("fx");
-        Assets.loadBundle("keyboard_inputs");
 
         // ------------------------------------
         // Initialization of global variables |

@@ -1,4 +1,4 @@
-import { Assets, Texture, Container, Rectangle, Graphics, Ticker, Sprite, Text } from "pixi.js";
+import { Container, Rectangle, Graphics, Ticker, Sprite, Text } from "pixi.js";
 import { IUpdateable } from "./IUpdateable";
 import { IHitbox, checkCollision } from "./IHitbox";
 import { HitKey } from "./HitKey";
@@ -38,13 +38,6 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     constructor(notesArray: [string, number][]) {
         super();
 
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.loadBundle("keyboard_inputs");
-        Assets.loadBundle("fx");
-        Assets.loadBundle("ui");
-
         // ------------------------------------
         // Initialization of global variables |
         // ------------------------------------
@@ -72,6 +65,16 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         const ui_player = Sprite.from("UI_Player");
 
         const scoreText = new Text("Score:", { fontSize: 23, fill: 0x000000, fontFamily: "tahoma" });
+
+        const hitzoneSText = new Text("S", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
+        const hitzoneDText = new Text("D", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
+        const hitzoneFText = new Text("F", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
+        const hitzoneJText = new Text("J", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
+        const hitzoneKText = new Text("K", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
+        const hitzoneLText = new Text("L", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
+
+        const hitZoneTextContainer = new Container();
+
         // ---------------------------
         // Setup of global variables |
         // ---------------------------
@@ -99,7 +102,17 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         ui_player.position.set(970, 260);
 
         scoreText.position.set(1020, 315);
-        scoreText.scale.set(1.1); // This turns text into a texture, so it becomes blurry when upscaled. 
+        scoreText.scale.set(1.1); // This turns text into a texture, so it becomes blurry when upscaled.
+
+        // TODO These positions should be more relative.
+        hitzoneSText.position.set(screen.width / 2 - 325, screen.height / 2 + 93);
+        hitzoneDText.position.set(screen.width / 2 - 220, screen.height / 2 + 93);
+        hitzoneFText.position.set(screen.width / 2 - 105, screen.height / 2 + 93);
+        hitzoneJText.position.set(screen.width / 2 + 10, screen.height / 2 + 93);
+        hitzoneKText.position.set(screen.width / 2 + 105, screen.height / 2 + 93);
+        hitzoneLText.position.set(screen.width / 2 + 230, screen.height / 2 + 93);
+
+        hitZoneTextContainer.position.set(0, 0);
 
         // ---------------------------
         // Setup of events           |
@@ -114,10 +127,18 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.uiPlayerContainer.addChild(this.scoreValueText);
         this.uiPlayerContainer.addChild(this.multiplierText);
 
+        hitZoneTextContainer.addChild(hitzoneSText);
+        hitZoneTextContainer.addChild(hitzoneDText);
+        hitZoneTextContainer.addChild(hitzoneFText);
+        hitZoneTextContainer.addChild(hitzoneJText);
+        hitZoneTextContainer.addChild(hitzoneKText);
+        hitZoneTextContainer.addChild(hitzoneLText);
+
         this.addChild(this.trackGraph);
         this.addChild(this.hitZoneContainer);
         this.addChild(this.hitParticleContainer);
         this.addChild(this.uiPlayerContainer);
+        this.addChild(hitZoneTextContainer);
 
         // ---------------------------
         // Continuation functions    |
@@ -170,11 +191,10 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     // --------------------------------------------------
     private spawnNote(note: string): void {
         const curNote = this.keyMap[note as keyof typeof this.keyMap];
-        const keyTexture = curNote + "_Key";
         const hitZoneIndex = parseInt(note);
 
         if (hitZoneIndex >= 0 && hitZoneIndex < this.hitZones.length) {
-            let curKey = new HitKey(Texture.from(keyTexture));
+            let curKey = new HitKey();
             curKey.x = this.hitZones[hitZoneIndex].x;
             curKey.missed = false;
 
@@ -228,6 +248,8 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
                             collisionDetected = true;
 
+                            hitKey.destroy; // This might possibly, perhaps, maybe cause a bug. Can't tell for sure.
+
                             break;
                         }
                     }
@@ -240,6 +262,8 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
                             this.noteStreak = 0;
 
                             this.setMultiplier(this.noteStreak);
+
+                            hitKey.destroy;
 
                             break;
                         }
@@ -264,9 +288,9 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     }
 
     private setMultiplier(noteStreak: number): number {
-        if (noteStreak < 2) {
+        if (noteStreak < 8) {
             this.multiplier = 1;
-        } else if (noteStreak >= 4 && noteStreak < 16) {
+        } else if (noteStreak >= 8 && noteStreak < 16) {
             this.multiplier = 2;
         } else if (noteStreak >= 16 && noteStreak < 24) {
             this.multiplier = 3;
@@ -329,7 +353,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
             for (let i = hitKeys.length - 1; i >= 0; i--) {
                 const hitKey = hitKeys[i];
 
-                if (hitKey.visible && hitKey.getPosition() > 540 + this.hitZones[0].height && !hitKey.missed) {
+                if (hitKey.visible && hitKey.getPosition() > this.hitZones[0].height * 7.1 && !hitKey.missed) {
                     this.noteStreak = 0;
 
                     hitKey.missed = true;
@@ -344,7 +368,6 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 }
 
 /* KNOWN BUGS:
-- MIDI notes that don't have a "0" duration value WILL cause desynchronization due to how the note delays are calculated.
-
 - Playing two or more notes too close to each other can cause the note streak to reset, unless seemingly played simultaneously. Can't yet replicate bug properly.
+  UPDATE 3/6/2024: This might have been fixed already by modifying the hit zone margin. Needs further testing.
 */

@@ -46,7 +46,6 @@ export class LoaderScene extends SceneAbstract {
             "characters",
             "objects",
             "ui",
-            "keyboard_inputs",
             "fx",
             "fonts",
             "spritesheet"

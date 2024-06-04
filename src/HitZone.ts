@@ -1,4 +1,4 @@
-import { Assets, Container, Rectangle, Graphics } from "pixi.js";
+import { Container, Rectangle, Graphics } from "pixi.js";
 import { IHitbox } from "./IHitbox";
 
 export class HitZone extends Container implements IHitbox {
@@ -7,11 +7,6 @@ export class HitZone extends Container implements IHitbox {
 
     constructor() {
         super();
-
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.loadBundle("keyboard_inputs");
 
         // ------------------------------------
         // Initialization of global variables |

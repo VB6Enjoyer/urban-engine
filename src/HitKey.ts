@@ -1,29 +1,23 @@
-import { Assets, Texture, Sprite, Container, Rectangle } from "pixi.js";
+import { Container, Rectangle, Graphics } from "pixi.js";
 import { PhysicsContainer } from "./PhysicsContainer";
 import { IHitbox } from "./IHitbox";
 import { Tween } from "tweedle.js";
 
 export class HitKey extends Container implements IHitbox {
 
-    public key: Sprite;
-    public keyTexture: Texture;
+    //public key: Sprite;
+    public key: Graphics;
     private physKey: PhysicsContainer;
 
     public missed: boolean;
 
-    constructor(keyTexture: Texture) {
+    constructor() {
         super();
-
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.loadBundle("keyboard_inputs");
 
         // ------------------------------------
         // Initialization of global variables |
         // ------------------------------------
-        this.keyTexture = keyTexture;
-        this.key = new Sprite(keyTexture);
+        this.key = new Graphics()
         this.physKey = new PhysicsContainer();
 
         this.missed = false;
@@ -31,8 +25,12 @@ export class HitKey extends Container implements IHitbox {
         // ---------------------------
         // Setup of global variables |
         // ---------------------------
+        this.key.lineStyle({ color: 0x000000, width: 2, alpha: 1 });
+        this.key.beginFill(0xFFFFFF, 1);
+        this.key.drawRoundedRect(15, 20, 95, 45, 33);
+        this.key.endFill();
         this.key.position.y = -120;
-        this.key.position.x = screen.width / 2 - 2;
+        this.key.position.x = screen.width / 2;
 
         this.physKey.speed.x = 50;
         this.physKey.speed.y = 50;

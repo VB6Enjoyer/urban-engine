@@ -1,5 +1,4 @@
-import { Assets, Container, Sprite, Texture, Text, TextStyle } from "pixi.js";
-import { manifest } from "./assets";
+import { Container, Sprite, Texture, Text, TextStyle } from "pixi.js";
 import { sound } from "@pixi/sound";
 import { ElectricSwitch } from "./ElectricSwitch";
 import { Clock } from "./Clock";
@@ -24,15 +23,6 @@ export class Background extends Container {
     constructor(callback: () => void, callback2: () => void) {
         super();
 
-        // ---------------------------
-        // Assets load               |
-        // ---------------------------
-        Assets.init({ manifest: manifest });
-        Assets.loadBundle("backgrounds");
-        Assets.loadBundle("objects");
-        Assets.loadBundle("fonts");
-        Assets.loadBundle("spritesheet");
-
         // ------------------------------------
         // Initialization of global variables |
         // ------------------------------------
@@ -52,7 +42,7 @@ export class Background extends Container {
         // --------------------------------
         // Declaration of local variables |
         // --------------------------------
-        const guitar = Sprite.from("objects/guitar.png");
+        const guitar = Sprite.from("Guitar");
         const electricSwitch = new ElectricSwitch(Texture.from("Switch-On"), Texture.from("Switch-Off"));
 
         // TODO This doesn't work, I've tried everything and it just doesn't fucking work.
@@ -139,7 +129,10 @@ export class Background extends Container {
             if (sound.isPlaying()) {
                 sound.stop;
             }
-            sound.removeAll(); // Removes existing sounds to avoid errors.
+
+            if (sound.exists("chord")) {
+                sound.remove("chord"); // Removes existing "chord" sound to avoid errors.
+            }
 
             sound.add("chord", "./audio/chord" + (Math.floor(Math.random() * 5) + 1) + ".mp3") // Picks a chord at random.
             sound.play("chord");
