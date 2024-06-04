@@ -724,7 +724,7 @@
   "meta": {
     "app": "http://free-tex-packer.com",
     "version": "0.6.7",
-    "image": "textures-0.png",
+    "image": "textures.png",
     "format": "RGBA8888",
     "size": {
       "w": 3992,
