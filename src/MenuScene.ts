@@ -131,7 +131,6 @@ export class MenuScene extends SceneAbstract {
         });
     }
 
-
     private async parseSongMetadata(file: File): Promise<string> {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
