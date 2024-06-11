@@ -1,2 +1,0 @@
-title = "This is some really long text you know"
-artist = "Look"
