@@ -96,24 +96,24 @@
         "y": 0.5
       }
     },
-    "objects/clock-transition2.png": {
+    "ui/nowPlayingBar.png": {
       "frame": {
         "x": 2,
         "y": 2318,
-        "w": 768,
-        "h": 784
+        "w": 1007,
+        "h": 76
       },
-      "rotated": false,
+      "rotated": true,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 768,
-        "h": 784
+        "w": 1007,
+        "h": 76
       },
       "sourceSize": {
-        "w": 768,
-        "h": 784
+        "w": 1007,
+        "h": 76
       },
       "pivot": {
         "x": 0.5,
@@ -168,9 +168,81 @@
         "y": 0.5
       }
     },
+    "character/buck-hd-ec-s.png": {
+      "frame": {
+        "x": 2,
+        "y": 3329,
+        "w": 352,
+        "h": 594
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 594
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "fx/particle.png": {
+      "frame": {
+        "x": 2,
+        "y": 3927,
+        "w": 44,
+        "h": 44
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 44,
+        "h": 44
+      },
+      "sourceSize": {
+        "w": 44,
+        "h": 44
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "objects/clock-transition2.png": {
+      "frame": {
+        "x": 82,
+        "y": 2318,
+        "w": 768,
+        "h": 784
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 768,
+        "h": 784
+      },
+      "sourceSize": {
+        "w": 768,
+        "h": 784
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "objects/guitar.png": {
       "frame": {
-        "x": 188,
+        "x": 358,
         "y": 2194,
         "w": 96,
         "h": 301
@@ -192,24 +264,24 @@
         "y": 0.5
       }
     },
-    "fx/particle.png": {
+    "ui/ui-player.png": {
       "frame": {
-        "x": 493,
-        "y": 2194,
-        "w": 44,
-        "h": 44
+        "x": 82,
+        "y": 3106,
+        "w": 162,
+        "h": 270
       },
-      "rotated": false,
+      "rotated": true,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
         "y": 0,
-        "w": 44,
-        "h": 44
+        "w": 162,
+        "h": 270
       },
       "sourceSize": {
-        "w": 44,
-        "h": 44
+        "w": 162,
+        "h": 270
       },
       "pivot": {
         "x": 0.5,
@@ -218,7 +290,7 @@
     },
     "background/room-night.jpg": {
       "frame": {
-        "x": 2,
+        "x": 358,
         "y": 3106,
         "w": 768,
         "h": 512
@@ -242,8 +314,8 @@
     },
     "background/room.jpeg": {
       "frame": {
-        "x": 518,
-        "y": 3106,
+        "x": 854,
+        "y": 2318,
         "w": 768,
         "h": 512
       },
@@ -266,8 +338,8 @@
     },
     "fx/notes2.png": {
       "frame": {
-        "x": 774,
-        "y": 2318,
+        "x": 874,
+        "y": 3090,
         "w": 465,
         "h": 751
       },
@@ -290,8 +362,8 @@
     },
     "fx/notes1.png": {
       "frame": {
-        "x": 1034,
-        "y": 3073,
+        "x": 1343,
+        "y": 3090,
         "w": 422,
         "h": 687
       },
@@ -306,54 +378,6 @@
       "sourceSize": {
         "w": 422,
         "h": 687
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/ui-player.png": {
-      "frame": {
-        "x": 1034,
-        "y": 3764,
-        "w": 162,
-        "h": 270
-      },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 162,
-        "h": 270
-      },
-      "sourceSize": {
-        "w": 162,
-        "h": 270
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hd-ec-s.png": {
-      "frame": {
-        "x": 1243,
-        "y": 2318,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
       },
       "pivot": {
         "x": 0.5,
@@ -362,8 +386,8 @@
     },
     "character/buck-hd-ec.png": {
       "frame": {
-        "x": 1460,
-        "y": 2916,
+        "x": 1370,
+        "y": 2318,
         "w": 352,
         "h": 594
       },
@@ -386,7 +410,7 @@
     },
     "character/buck-hd-eh-s.png": {
       "frame": {
-        "x": 1599,
+        "x": 1726,
         "y": 2318,
         "w": 352,
         "h": 594
@@ -408,57 +432,9 @@
         "y": 0.5
       }
     },
-    "ui/radio-off.png": {
-      "frame": {
-        "x": 1460,
-        "y": 3514,
-        "w": 444,
-        "h": 324
-      },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 444,
-        "h": 324
-      },
-      "sourceSize": {
-        "w": 444,
-        "h": 324
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "ui/radio.png": {
-      "frame": {
-        "x": 1788,
-        "y": 3514,
-        "w": 444,
-        "h": 324
-      },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 444,
-        "h": 324
-      },
-      "sourceSize": {
-        "w": 444,
-        "h": 324
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
     "character/buck-hd-eh.png": {
       "frame": {
-        "x": 1816,
+        "x": 1769,
         "y": 2916,
         "w": 352,
         "h": 594
@@ -482,7 +458,7 @@
     },
     "character/buck-hd-eo.png": {
       "frame": {
-        "x": 2116,
+        "x": 2082,
         "y": 2318,
         "w": 352,
         "h": 594
@@ -504,10 +480,58 @@
         "y": 0.5
       }
     },
+    "ui/radio-off.png": {
+      "frame": {
+        "x": 1769,
+        "y": 3514,
+        "w": 444,
+        "h": 324
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 444,
+        "h": 324
+      },
+      "sourceSize": {
+        "w": 444,
+        "h": 324
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "ui/radio.png": {
+      "frame": {
+        "x": 2097,
+        "y": 3514,
+        "w": 444,
+        "h": 324
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 444,
+        "h": 324
+      },
+      "sourceSize": {
+        "w": 444,
+        "h": 324
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "character/buck-hd-ey-s.png": {
       "frame": {
-        "x": 2472,
-        "y": 2318,
+        "x": 2125,
+        "y": 2916,
         "w": 352,
         "h": 594
       },
@@ -530,8 +554,8 @@
     },
     "character/buck-hu-ec-s.png": {
       "frame": {
-        "x": 2828,
-        "y": 2194,
+        "x": 2438,
+        "y": 2318,
         "w": 352,
         "h": 594
       },
@@ -554,8 +578,8 @@
     },
     "character/buck-hu-ec.png": {
       "frame": {
-        "x": 2828,
-        "y": 2792,
+        "x": 2794,
+        "y": 2318,
         "w": 352,
         "h": 594
       },
@@ -578,8 +602,32 @@
     },
     "character/buck-hu-eh-s.png": {
       "frame": {
-        "x": 2828,
-        "y": 3390,
+        "x": 2425,
+        "y": 3514,
+        "w": 352,
+        "h": 594
+      },
+      "rotated": true,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 352,
+        "h": 594
+      },
+      "sourceSize": {
+        "w": 352,
+        "h": 594
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "character/buck-hu-eh.png": {
+      "frame": {
+        "x": 2481,
+        "y": 2916,
         "w": 352,
         "h": 594
       },
@@ -600,38 +648,14 @@
         "y": 0.5
       }
     },
-    "character/buck-hu-eh.png": {
+    "character/buck-hu-eo-s.png": {
       "frame": {
-        "x": 2172,
+        "x": 2837,
         "y": 2916,
         "w": 352,
         "h": 594
       },
-      "rotated": true,
-      "trimmed": false,
-      "spriteSourceSize": {
-        "x": 0,
-        "y": 0,
-        "w": 352,
-        "h": 594
-      },
-      "sourceSize": {
-        "w": 352,
-        "h": 594
-      },
-      "pivot": {
-        "x": 0.5,
-        "y": 0.5
-      }
-    },
-    "character/buck-hu-eo-s.png": {
-      "frame": {
-        "x": 2172,
-        "y": 3272,
-        "w": 352,
-        "h": 594
-      },
-      "rotated": true,
+      "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
@@ -650,12 +674,12 @@
     },
     "character/buck-hu-eo.png": {
       "frame": {
-        "x": 2116,
-        "y": 3628,
+        "x": 3150,
+        "y": 2318,
         "w": 352,
         "h": 594
       },
-      "rotated": true,
+      "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
@@ -674,12 +698,12 @@
     },
     "objects/switch-off.png": {
       "frame": {
-        "x": 3184,
+        "x": 3506,
         "y": 2318,
         "w": 346,
         "h": 552
       },
-      "rotated": true,
+      "rotated": false,
       "trimmed": false,
       "spriteSourceSize": {
         "x": 0,
@@ -698,8 +722,8 @@
     },
     "objects/switch-on.png": {
       "frame": {
-        "x": 3184,
-        "y": 2668,
+        "x": 3023,
+        "y": 3514,
         "w": 346,
         "h": 552
       },
@@ -728,7 +752,7 @@
     "format": "RGBA8888",
     "size": {
       "w": 3992,
-      "h": 3986
+      "h": 3973
     },
     "scale": 1
   }

@@ -30,12 +30,13 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     private uiPlayerContainer: Container;
     private scoreValueText: Text;
     private multiplierText: Text;
+    private artistAndTitleText: Text;
 
     private multiplier: number;
     private noteStreak: number;
     private startTime: number;
 
-    constructor(notesArray: [string, number][]) {
+    constructor(notesArray: [string, number][], songMetadata: string) {
         super();
 
         // ------------------------------------
@@ -56,13 +57,21 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
         this.notesArray = notesArray;
 
-        this.scoreValueText = new Text("0", { fontSize: 30, fill: 0x000000, fontFamily: "times-new-roman" });
-        this.multiplierText = new Text("x" + this.multiplier.toString(), { fontSize: 25, fill: 0x000000, fontFamily: "tahoma" });
+        this.scoreValueText = new Text("0", { fontSize: 30, fill: 0x000000, fontFamily: "Chaos_Engine" });
+        this.multiplierText = new Text("x" + this.multiplier.toString(), { fontSize: 25, fill: 0x000000, fontFamily: "Chaos_Engine" });
+
+        // TODO A better implementation for this is necessary; Would be better for the text to constantly slide on the screen.
+        if (songMetadata.length > 33) {
+            songMetadata = songMetadata.substring(0, 33) + '...';
+        }
+        this.artistAndTitleText = new Text(songMetadata, { fontSize: 33, fill: 0x000000, fontFamily: "Chaos_Engine" });
 
         // --------------------------------
         // Declaration of local variables |
         // --------------------------------
         const ui_player = Sprite.from("UI_Player");
+
+        const nowPlayingBar = Sprite.from("Now_Playing_Bar");
 
         const scoreText = new Text("Score:", { fontSize: 23, fill: 0x000000, fontFamily: "tahoma" });
 
@@ -74,6 +83,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         const hitzoneLText = new Text("L", { fontSize: 100, fill: 0x000000, fontFamily: "Chaos_Engine" });
 
         const hitZoneTextContainer = new Container();
+        const nowPlayingContainer = new Container();
 
         // ---------------------------
         // Setup of global variables |
@@ -94,12 +104,16 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
 
         this.uiPlayerContainer.x = this.trackGraph.x - this.trackGraph.x / 2.66;
         this.uiPlayerContainer.y = screen.height;
+        this.artistAndTitleText.position.set(66, (nowPlayingBar.height / 2) * 0.59);
 
         // ---------------------------
         // Setup of local variables  |
         // ---------------------------
         ui_player.scale.set(1.5)
         ui_player.position.set(970, 260);
+
+        nowPlayingBar.scale.set(0.59, 1);
+        nowPlayingBar.position.set(3, 5);
 
         scoreText.position.set(1020, 315);
         scoreText.scale.set(1.1); // This turns text into a texture, so it becomes blurry when upscaled.
@@ -127,6 +141,9 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.uiPlayerContainer.addChild(this.scoreValueText);
         this.uiPlayerContainer.addChild(this.multiplierText);
 
+        nowPlayingContainer.addChild(nowPlayingBar);
+        nowPlayingContainer.addChild(this.artistAndTitleText);
+
         hitZoneTextContainer.addChild(hitzoneSText);
         hitZoneTextContainer.addChild(hitzoneDText);
         hitZoneTextContainer.addChild(hitzoneFText);
@@ -139,6 +156,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
         this.addChild(this.hitParticleContainer);
         this.addChild(this.uiPlayerContainer);
         this.addChild(hitZoneTextContainer);
+        this.addChild(nowPlayingContainer);
 
         // ---------------------------
         // Continuation functions    |
@@ -306,6 +324,7 @@ export class TickerScene extends Container implements IUpdateable, IHitbox {
     // --------------------------------------------------
     // UI-manipulation functions                        |
     // --------------------------------------------------
+    // TODO The "Now Playing" Bar should also slide into the screen.
     public slideIntoScreen() {
         let startTime = performance.now(); // Get the current timestamp.
         const duration = 500; // Duration of the animation in milliseconds.

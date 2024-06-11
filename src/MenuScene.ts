@@ -72,13 +72,15 @@ export class MenuScene extends SceneAbstract {
 
             const midiFile = this.background.files[0];
             const oggFile = this.background.files[1];
+            const txtFile = this.background.files[2];
 
             try {
                 const parsedMidiFile = await parseMidiFile(midiFile);
                 const audioBuffer = await this.decodeAudioFile(oggFile);
+                const songMetadata = await this.parseSongMetadata(txtFile);
 
                 setTimeout(() => {
-                    const tickerScene = new TickerScene(parsedMidiFile);
+                    const tickerScene = new TickerScene(parsedMidiFile, songMetadata);
                     tickerScene.startScheduling();
 
                     sound.add("song", audioBuffer);
@@ -126,6 +128,36 @@ export class MenuScene extends SceneAbstract {
             };
 
             reader.readAsArrayBuffer(oggFile);
+        });
+    }
+
+
+    private async parseSongMetadata(file: File): Promise<string> {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                const contents = reader.result as string;
+
+                // Regex to extract artist and title.
+                const artistMatch = contents.match(/artist\s*=\s*"([^"]+)"/i);
+                const titleMatch = contents.match(/title\s*=\s*"([^"]+)"/i);
+
+                // Extract artist and title or use "Unknown" if not found
+                const artist = artistMatch ? artistMatch[1] : '[Unknown Artist]';
+                const title = titleMatch ? titleMatch[1] : '[Unknown Title]';
+
+                let result = `${artist} - ${title}`;
+
+                resolve(result);
+            };
+
+            reader.onerror = () => {
+                reject(reader.error);
+            };
+
+            // Read the file as text
+            reader.readAsText(file);
         });
     }
 }

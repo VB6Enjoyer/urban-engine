@@ -10,6 +10,7 @@ export class Scene extends Container {
     private panel: NineSlicePlane;
     private recorderContainer: Container;
 
+
     constructor() {
         super();
 

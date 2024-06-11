@@ -2,6 +2,7 @@ import { Container, Sprite, Texture, Text, TextStyle } from "pixi.js";
 import { sound } from "@pixi/sound";
 import { ElectricSwitch } from "./ElectricSwitch";
 import { Clock } from "./Clock";
+import JSZip from "jszip";
 
 export class Background extends Container {
 
@@ -150,44 +151,58 @@ export class Background extends Container {
     // Gameplay-transition functions                    |
     // --------------------------------------------------
     public transitionToGameplay() {
-        // Find the existing file input elements in the DOM.
-        const midiFileInput = document.getElementById('midiFileInput') as HTMLInputElement;
-        const oggFileInput = document.getElementById('oggFileInput') as HTMLInputElement;
+        // Find the existing file input element in the DOM.
+        let zipFileInput = document.getElementById('zipFileInput') as HTMLInputElement;
 
-        // Function to handle MIDI file selection.
-        const handleMidiFileSelect = (event: Event) => {
+        const handleZipFileSelect = async (event: Event) => {
             const input = event.target as HTMLInputElement;
-            const midiFiles = Array.from(input.files || []).filter(file => file.name.endsWith('.mid') || file.name.endsWith('.midi')); // Filter out any non-MIDI files.
-            this.files.push(...midiFiles);
-            if (midiFiles.length > 0) {
-                oggFileInput.click(); // Prompt for the OGG file.
+            const zipFiles = Array.from(input.files || []).filter(file => file.name.endsWith('.zip')); // Filter out any non-ZIP files.
+
+            if (zipFiles.length === 0) {
+                alert('Please select a .zip file.');
+                zipFileInput.removeEventListener('change', handleZipFileSelect);
+                return;
             }
-        };
 
-        // Function to handle OGG file selection.
-        const handleOggFileSelect = (event: Event) => {
-            const input = event.target as HTMLInputElement;
-            const oggFiles = Array.from(input.files || []).filter(file => file.name.endsWith('.ogg'));
-            this.files.push(...oggFiles);
+            // Read the selected ZIP file.
+            const zipFile = zipFiles[0];
+            const zip = new JSZip();
+            const zipContent = await zip.loadAsync(zipFile);
 
-            // Continue with gameplay logic if both MIDI and OGG files are selected.
-            if (this.files.some(file => file.name.endsWith('.mid') || file.name.endsWith('.midi')) &&
-                this.files.some(file => file.name.endsWith('.ogg'))) {
-                // Remove the event listeners to avoid multiple executions.
-                midiFileInput.removeEventListener('change', handleMidiFileSelect);
-                oggFileInput.removeEventListener('change', handleOggFileSelect);
+            let midiFile: File | null = null;
+            let oggFile: File | null = null;
+            let txtFile: File | null = null;
+
+            // Iterate through the contents of the ZIP file.
+            for (const filename of Object.keys(zipContent.files)) {
+                const file = zipContent.files[filename];
+                if (!file.dir) {
+                    if (filename.endsWith('.mid') || filename.endsWith('.midi')) {
+                        midiFile = new File([await file.async('blob')], filename);
+                    } else if (filename.endsWith('.ogg')) {
+                        oggFile = new File([await file.async('blob')], filename);
+                    } else if (filename.endsWith('.txt')) {
+                        txtFile = new File([await file.async('blob')], filename);
+                    }
+                }
+            }
+
+            if (midiFile && oggFile && txtFile) {
+                this.files.push(midiFile, oggFile, txtFile);
 
                 this.continueWithGameplayLogic();
             } else {
-                alert('Please select both a MIDI file and an OGG file.'); // If a MIDI or OGG file is not selected, show an alert to the player.
+                alert('The ZIP file must contain a MIDI file, OGG and TXT file.');
             }
+
+            // Remove the event listener to avoid multiple executions.
+            zipFileInput.removeEventListener('change', handleZipFileSelect);
         };
 
-        // Attach event listeners for MIDI and OGG file inputs.
-        midiFileInput.addEventListener('change', handleMidiFileSelect);
-        oggFileInput.addEventListener('change', handleOggFileSelect);
+        // Attach event listener for ZIP file input.
+        zipFileInput.addEventListener('change', handleZipFileSelect);
 
-        midiFileInput.click(); // Trigger the MIDI file select window.
+        zipFileInput.click(); // Trigger the ZIP file select window.
     }
 
     private continueWithGameplayLogic() {
@@ -227,9 +242,9 @@ export class Background extends Container {
 }
 
 /* KNOWN BUGS:
-- If the player opens and closes the file select window without selecting a file, then carries out the gameplay process correctly, the next error appears in console
-and gameplay won't take place:
-"Error parsing MIDI file or decoding audio: DOMException: The buffer passed to decodeAudioData contains an unknown content type."
+- If the player opens and closes the file select window without selecting a file, then carries out the gameplay process correctly, the notes on-screen will be duplicated, with the duplicates appearing behind the track graph.
+
+- Opening a .zip with multiple .midi, .ogg or .ini files will use the first file it parses alphabetically and ignore all others.
 
 - Custom fonts currently don't seem to work, either imported locally or from the web.
 */

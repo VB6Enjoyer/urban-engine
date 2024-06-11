@@ -34,20 +34,20 @@ function processMidiJson(json: any) { // json shouldn't be "any", but I couldn't
 
     const jsonArray = convertArraysToObjectArrays(Object.values(json));
     let notesArray: [string, number][] = [];
-    let tempo = 0;
+    let tempoMap = [];
 
-    // Check for the position of the property that defines the MIDI's tempo within the json.
+    // Check for the position of the first property that defines the MIDI's tempo within the json.
     for (const track of jsonArray) {
         const stack: any[] = [track];
 
         while (stack.length > 0) {
-            const current = stack.pop();
+            const current = stack.shift();
 
             if (current && typeof current === 'object') {
                 if (current.hasOwnProperty('setTempo')) {
-                    tempo = current.setTempo.microsecondsPerQuarter;
-                    break;
+                    tempoMap.push([current.setTempo.microsecondsPerQuarter, current.delta]);
                 }
+
                 for (const key in current) {
                     if (current[key] && typeof current[key] === 'object') {
                         stack.push(current[key]);
@@ -55,18 +55,36 @@ function processMidiJson(json: any) { // json shouldn't be "any", but I couldn't
                 }
             }
         }
-        if (tempo > 0) {
-            break;
-        }
     }
+    console.log(tempoMap);
 
-    const bpm = 60000 / (tempo / 1000); // Beats per minute.
+    let bpm = 60000 / (tempoMap[0][0] / 1000); // Initial beats per minute.
     const division = json.division; // Division value from MIDI file.
-    const msPerTick = 60000 / (bpm * division)
+    let msPerTick = 60000 / (bpm * division);
+    let accumulatedDelta = 0;
+    let tempoMapIterator = 1;
 
     for (let i = 0; i < jsonArray[2][1].length; i++) {
         const currentObject = jsonArray[2][1][i];
         const previousObject = jsonArray[2][1][i - 1];
+
+        accumulatedDelta += currentObject.delta;
+
+
+        if (tempoMapIterator < tempoMap.length) {
+            if (accumulatedDelta >= tempoMap[tempoMapIterator][1]) {
+                console.log("tempoMapLength: " + tempoMap.length);
+                console.log("tempoMapIterator: " + tempoMapIterator);
+                console.log("current bpm: " + bpm);
+
+                bpm = 60000 / (tempoMap[tempoMapIterator][0] / 1000);
+                console.log("new bpm: " + bpm);
+                msPerTick = 60000 / (bpm * division);
+                console.log("msPerTick: " + msPerTick);
+                tempoMapIterator++;
+                accumulatedDelta = 0;
+            }
+        }
 
         if (currentObject.noteOn) {
             if (previousObject.noteOn) { // If the previous note is a noteOn, then it is a chord and only the delta of one note is necessary.

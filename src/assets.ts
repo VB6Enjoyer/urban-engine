@@ -52,7 +52,8 @@ export const manifest: AssetsManifest = {
             {
                 Radio: "./ui/radio.png",
                 Radio_off: "./ui/radio-off.png",
-                UI_Player: "./ui/ui-player.png"
+                UI_Player: "./ui/ui-player.png",
+                Now_Playing_Bar: "./ui/nowPlayingBar.png"
             }
         },
 

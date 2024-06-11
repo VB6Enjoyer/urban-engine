@@ -11,6 +11,7 @@
     "@pixi/sound": "^5.2.3",
     "downloadjs": "^1.4.7",
     "fs": "^0.0.1-security",
+    "jszip": "^3.10.1",
     "midi-json-parser": "^8.1.45",
     "pixi.js": "^7.4.0",
     "tone": "^14.7.77",
